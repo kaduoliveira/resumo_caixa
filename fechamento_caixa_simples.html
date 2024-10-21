@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fechamento de Caixa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+   <style>
+       .floating-form {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: #fff;
+          padding: 20px;
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+          z-index: 999;   
+        }
+
+        html {
+            background-color: whitesmoke;
+        }
+
+        input[type="number"] {
+            width: 80px;
+            text-align: right;
+        }
+   </style>
+
+</head>
+    <body style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+    
+    <script>
+
+        function formatarMoeda(valor) {
+            return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        function atualizarDinheiroTotal() {
+            var dinheiro1 = parseFloat(document.querySelector('input[name="dinheiro1"]').value) || 0;
+            var dinheiro2 = parseFloat(document.querySelector('input[name="dinheiro2"]').value) || 0;
+            var dinheiro3 = parseFloat(document.querySelector('input[name="dinheiro3"]').value) || 0;
+            var dinheiro4 = parseFloat(document.querySelector('input[name="dinheiro4"]').value) || 0;
+    
+            var total = dinheiro1 + dinheiro2 + dinheiro3 + dinheiro4;
+            document.querySelector('input[name="dinheiro_total"]').value = total.toFixed(2);
+        }
+
+        function atualizarCartaoCreditoTotal() {
+            var cartao1 = parseFloat(document.querySelector('input[name="cartao_cred1"]').value) || 0;
+            var cartao2 = parseFloat(document.querySelector('input[name="cartao_cred2"]').value) || 0;
+            var cartao3 = parseFloat(document.querySelector('input[name="cartao_cred3"]').value) || 0;
+            var cartao4 = parseFloat(document.querySelector('input[name="cartao_cred4"]').value) || 0;
+
+            var total = cartao1 + cartao2 + cartao3 + cartao4;
+            document.querySelector('input[name="cartao_cred_total"]').value = total.toFixed(2);
+        }
+
+        function atualizarCartaoDebitoTotal() {
+            var cartao1 = parseFloat(document.querySelector('input[name="cartao_deb1"]').value) || 0;
+            var cartao2 = parseFloat(document.querySelector('input[name="cartao_deb2"]').value) || 0;
+            var cartao3 = parseFloat(document.querySelector('input[name="cartao_deb3"]').value) || 0;
+            var cartao4 = parseFloat(document.querySelector('input[name="cartao_deb4"]').value) || 0;
+
+            var total = cartao1 + cartao2 + cartao3 + cartao4;
+            document.querySelector('input[name="cartao_deb_total"]').value = total.toFixed(2);
+        }
+    </script>
+    <div class="floating-form">
+        <h3>RESUMO DIÁRIO DO CAIXA</h3>
+     <form method="post" action="" style="border: 2px solid black; padding: 10px; font-size: large;">
+        <h4>RESUMO DE VENDAS  -   <input type="date" name="data" id="data" tabindex="1"></h4>
+            <table>
+                <tr style="background-color: lightgray;">
+                    <th class="coluna1">Caixa n.º</th>
+                    <th><input type="number" name="caixa1" id="" style="background-color: lightgray;" tabindex="2"></th>
+                    <th>Total Dia</th>
+                </tr>
+                <tr>
+                    <td class="coluna1" style="background-color: lightgray;">DINHEIRO</td>
+                    <td><input name="dinheiro1" type="number" tabindex="3" oninput="atualizarDinheiroTotal()"></td>
+                    
+                </tr>
+                <tr>
+                    <td class="coluna1" style="background-color: lightgray;">CARTÃO CRED</td>
+                    <td><input type="number" name="cartao_cred1" oninput="atualizarCartaoCreditoTotal()"></td>
+                  
+                <tr>
+                    <td class="coluna1" style="background-color: lightgray;">CARTÃO DEB</td>
+                    <td><input type="number" name="cartao_deb1" oninput="atualizarCartaoDebitoTotal()"></td>
+                    
+                </tr>
+                <tr>
+                    <td class="coluna1" style="background-color: lightgray;">PIX</td>
+                    <td><input type="number" name="pix1"></td>
+                   
+                </tr>
+                <tr>
+                    <td class="coluna1" style="background-color: lightgray;">CHEQUE</td>
+                    <td><input type="number" name="cheque1"></td>
+                    
+                </tr>
+                <tr>
+                    <td class="coluna1" style="background-color: lightgray;">TOTAL</td>
+                    <td><input type="number" style="background-color: lightgray; font-weight: bolder;" name="total1"readonly></td>
+                    
+                </tr>
+            </table>
+        <hr>
+            <table>
+                <tr>
+                    <td class="coluna1">Dinheiro Malote</td>
+                    <td><input type="number" name="malote1"></td>
+                   
+                </tr>
+                <tr class="despesa">
+                    <td style="font-weight: bolder;">Despesa</td>
+                    <td><input type="number" name="despesa1"></td>
+                    
+                </tr>
+                <tr>
+                    <td style="font-weight: bolder;">Resultado</td>
+                    <td><input type="number" name="resultado1" readonly></td>
+                   
+                </tr>
+                <tr>
+                    <td style="font-weight: bolder; text-align: right;"  class="coluna1" colspan="2">Quant. de Vendas</td>
+                    <td><input type="number" name="qtd_vendas"></td>
+                    <td style="font-weight: bolder; text-align: right;" colspan="2">Ticket Médio</td>
+                    <td><input type="number" name="tkt_medio" readonly></td>
+                </tr>
+            </table>
+            <h5>RESUMO DE SERVIÇOS</H5>
+            <table>
+                <tr>
+                    <td style="font-weight: bolder;" class="coluna1">Serviços</td>
+                    <td><input type="number" name="serviços1"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
