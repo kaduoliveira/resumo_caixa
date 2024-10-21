@@ -47,6 +47,10 @@
             background-color: #a7c3ec; /* Linhas pares com fundo cinza */
         }
 
+        thead td {
+            padding: 10px;
+        }
+
         td {
             text-align: center;
             border-top: 1px solid #272727;
@@ -56,6 +60,24 @@
         h4 {
             text-align: center;
         }
+
+    button {
+        padding: 5px 10px;
+        background-color: #274360;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: medium;
+        border-radius: 10px 3px;
+        width: 120px;
+    }
+
+    button:hover{
+        background-color: #2b6528;
+        color: #fff;
+        transition: background-color 0.3s ease;
+    }
+
    </style>
 
 </head>
@@ -63,7 +85,8 @@
     
     </script>
     <div class="floating-form">
-        <h4>Listagem de Fechamentos de Caixa</h4>
+        <h4>Listagem de Fechamentos de Caixa</h4> 
+        <a href="{{ url_for('novo') }}"><button>Novo</button></a>
         <table>
             <thead>
                 <tr>
@@ -74,6 +97,7 @@
                     <td>Quant Vendas</td>
                     <td>Tkt Médio</td>
                     <td>Serviços</td>
+                    <td></td>
                 </tr>
             </thead>
             <tbody>
@@ -85,6 +109,7 @@
                     <td>5</td>
                     <td>6</td>
                     <td>7</td>
+                    <td><a href=""><button>Editar</button></a></td>
                 </tr>
                 {% for caixa in caixas %}
                     <tr>
@@ -95,6 +120,7 @@
                         <td>5</td>
                         <td>6</td>
                         <td>7</td>
+                        <td><a href=""><button>Editar</button></a></td>
                     </tr>
                 {% endfor %}
             </tbody>
