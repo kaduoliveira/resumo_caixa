@@ -115,67 +115,76 @@
             document.querySelector('input[name="tkt_medio"]').value = ticket_medio.toFixed(2);
         }
 
+        function formatCurrency(input) {
+            let value = input.value;
+            value = value.replace(/\D/g, ""); // Remove caracteres não numéricos
+            value = (value / 100).toFixed(2) + ""; // Adiciona duas casas decimais
+            value = value.replace(".", ","); // Substitui ponto por vírgula
+            value = value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1."); // Adiciona pontos a cada milhar
+            input.value = value;
+        }
+
     </script>
 <div class="floating-form">
         <h3>RESUMO DIÁRIO DO CAIXA</h3>
-    <form method="post" action="" >
+    <form method="post" action="/criar" >
         <fieldset>
             <h4>RESUMO DE VENDAS  -   <input type="date" name="data" id="data" tabindex="1"></h4>
             <div>
                 <label for="caixa1">Caixa nº.</label>
-                <input type="text" id="caixa1" name="caixa1" required>
+                <input type="text" id="caixa1" name="caixa1" required >
             </div>
             <div>
                 <label for="dinheiro1">Dinheiro</label>
-                <input type="text" name="dinheiro1" id="dinheiro1" oninput="atualizarTotal()">
+                <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" value="{{ valor_padrao }}" name="dinheiro1" id="dinheiro1" oninput="atualizarTotal()">
             </div>
             <div>
                 <label for="cartao_cred1">CARTÃO CRED</label>
-                <input type="text" name="cartao_cred1" id="cartao_cred1" oninput="atualizarTotal()">
+                <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cartao_cred1" id="cartao_cred1" oninput="atualizarTotal()">
             </div>
             <div>
                 <label for="cartao_deb1">CARTÃO DEB</label>
-                <input type="text" name="cartao_deb1" id="cartao_deb1" oninput="atualizarTotal()">
+                <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cartao_deb1" id="cartao_deb1" oninput="atualizarTotal()">
             </div>
             <div>
                 <label for="pix1">PIX</label>
-                <input type="text" name="pix1" oninput="atualizarTotal()">
+                <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="pix1" id="pix1" oninput="atualizarTotal()">
             </div>
             <div>
                 <label for="cheque1">CHEQUE</label>
-                <input type="text" name="cheque1" id="cheque1" oninput="atualizarTotal()">
+                <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cheque1" id="cheque1" oninput="atualizarTotal()">
             </div>
             <div>
                 <label class="destaque" for="total1">TOTAL</label>
-                <input type="text" name="total1" id="total1" oninput="atualizarTicketMedio()" readonly></td>  
+                <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="total1" id="total1" oninput="atualizarTicketMedio()" readonly></td>  
             </div>
             <hr>
             <div>
                 <label for="malote1">Dinheiro Malote</label>
-                <input type="text" name="malote1" id="malote1">                    
+                <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="malote1" id="malote1">                    
             </div>
             <div class="despesa">
-                <label for="despesa1">Despesa</label>
-                <input type="text" name="despesa1" id="despesa1">
+                <label for="sangria1">Sangria</label>
+                <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="sangria1" id="sangria1">
             </div>
             <div>
                 <label class="destaque" for="resultado1">Resultado</label>
-                <input type="text" name="resultado1" id="resultado1" readonly>
+                <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado1" id="resultado1" readonly>
             </div>
             <hr>
             <div>
                 <label for="qtd_vendas">Quant. de Vendas</label>
-                <td><input type="text" name="qtd_vendas" id="qtd_vendas" oninput="atualizarTicketMedio()">
+                <td><input type="number" name="qtd_vendas" id="qtd_vendas" oninput="atualizarTicketMedio()">
             </div>
             <div>
                 <label for="tkt_medio">Ticket Médio</label>
-                <input type="text" name="tkt_medio" id="tkt_medio" readonly>
+                <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="tkt_medio" id="tkt_medio" readonly>
             </div>
             <hr>
             <h5>RESUMO DE SERVIÇOS</H5>
             <div>
                 <label for="servicos1">Serviços</label>
-                <input type="text" name="servicos1" id="servicos">
+                <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="servicos1" id="servicos">
             </div>   
             <div style="text-align: right;">
                 <button class="salvar" type="submit">Salvar</button>
