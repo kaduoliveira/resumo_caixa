@@ -27,8 +27,18 @@
             background: #274360;
         }
 
+        input {
+            
+        }
+
+        input[type="date"] {
+            width: 100%;
+            font-size: large;
+            text-align: center;
+            font-weight: bolder;
+        }
+
         input[type="number"] {
-            width: 110px;
             text-align: right;
             font-size: medium;
         }
@@ -60,6 +70,25 @@
             width: 100px;
         }
 
+        fieldset div {
+            display: flex;
+            justify-content: space-between;
+            align-items: right;
+            margin-bottom: 5px;
+        }
+
+        h3, h4, h5 {
+            margin: 5px;
+        }
+        
+        .despesa {
+            color: red;
+        }
+
+        .destaque {
+            font-weight: bolder;
+        }
+
    </style>
 
 </head>
@@ -78,85 +107,80 @@
             document.querySelector('input[name="total1"]').value = total.toFixed(2);
         }
 
+        function atualizarTicketMedio() {
+            var total1 = parseFloat(document.querySelector('input[name="total1"]').value) || 0;
+            var qtd_vendas = parseFloat(document.querySelector('input[name="qtd_vendas"]').value) || 0;
+
+            var ticket_medio = total1 / qtd_vendas;
+            document.querySelector('input[name="tkt_medio"]').value = ticket_medio.toFixed(2);
+        }
+
     </script>
-    <div class="floating-form">
+<div class="floating-form">
         <h3>RESUMO DIÁRIO DO CAIXA</h3>
-     <form method="post" action="" >
+    <form method="post" action="" >
         <fieldset>
             <h4>RESUMO DE VENDAS  -   <input type="date" name="data" id="data" tabindex="1"></h4>
-            <table>
-                <tr style="background-color: lightgray;">
-                    <th class="coluna1">Caixa n.º</th>
-                    <th><input type="number" name="caixa1" id="" style="background-color: lightgray;" tabindex="2"></th>
-                </tr>
-                <tr>
-                    <td style="background-color: lightgray;">DINHEIRO</td>
-                    <td><input name="dinheiro1" type="number" tabindex="3" oninput="atualizarTotal()"></td>
-                    
-                </tr>
-                <tr>
-                    <td class="coluna1" style="background-color: lightgray;">CARTÃO CRED</td>
-                    <td><input type="number" name="cartao_cred1" oninput="atualizarTotal()"></td>
-                
-                <tr>
-                    <td class="coluna1" style="background-color: lightgray;">CARTÃO DEB</td>
-                    <td><input type="number" name="cartao_deb1" oninput="atualizarTotal()"></td>
-                    
-                </tr>
-                <tr>
-                    <td class="coluna1" style="background-color: lightgray;">PIX</td>
-                    <td><input type="number" name="pix1" oninput="atualizarTotal()"></td>
-                
-                </tr>
-                <tr>
-                    <td class="coluna1" style="background-color: lightgray;">CHEQUE</td>
-                    <td><input type="number" name="cheque1" oninput="atualizarTotal()"></td>
-                    
-                </tr>
-                <tr>
-                    <td class="coluna1" style="background-color: lightgray;">TOTAL</td>
-                    <td><input type="number" style="background-color: lightgray; font-weight: bolder;" name="total1" readonly></td>
-                    
-                </tr>
-            </table>
+            <div>
+                <label for="caixa1">Caixa nº.</label>
+                <input type="text" id="caixa1" name="caixa1" required>
+            </div>
+            <div>
+                <label for="dinheiro1">Dinheiro</label>
+                <input type="text" name="dinheiro1" id="dinheiro1" oninput="atualizarTotal()">
+            </div>
+            <div>
+                <label for="cartao_cred1">CARTÃO CRED</label>
+                <input type="text" name="cartao_cred1" id="cartao_cred1" oninput="atualizarTotal()">
+            </div>
+            <div>
+                <label for="cartao_deb1">CARTÃO DEB</label>
+                <input type="text" name="cartao_deb1" id="cartao_deb1" oninput="atualizarTotal()">
+            </div>
+            <div>
+                <label for="pix1">PIX</label>
+                <input type="text" name="pix1" oninput="atualizarTotal()">
+            </div>
+            <div>
+                <label for="cheque1">CHEQUE</label>
+                <input type="text" name="cheque1" id="cheque1" oninput="atualizarTotal()">
+            </div>
+            <div>
+                <label class="destaque" for="total1">TOTAL</label>
+                <input type="text" name="total1" id="total1" oninput="atualizarTicketMedio()" readonly></td>  
+            </div>
             <hr>
-                <table>
-                    <tr>
-                        <td class="coluna1">Dinheiro Malote</td>
-                        <td><input type="number" name="malote1"></td>
-                    </tr>
-                    <tr class="despesa">
-                        <td style="font-weight: bolder;">Despesa</td>
-                        <td><input type="number" name="despesa1"></td>
-                        
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder;">Resultado</td>
-                        <td><input type="number" name="resultado1" readonly></td>
-                    
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder; text-align: right;"  >Quant. de Vendas</td>
-                        <td><input type="number" name="qtd_vendas"></td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: bolder; text-align: right;">Ticket Médio</td>
-                        <td><input type="number" name="tkt_medio" readonly></td>
-                    </tr>
-                </table>
+            <div>
+                <label for="malote1">Dinheiro Malote</label>
+                <input type="text" name="malote1" id="malote1">                    
+            </div>
+            <div class="despesa">
+                <label for="despesa1">Despesa</label>
+                <input type="text" name="despesa1" id="despesa1">
+            </div>
+            <div>
+                <label class="destaque" for="resultado1">Resultado</label>
+                <input type="text" name="resultado1" id="resultado1" readonly>
+            </div>
+            <hr>
+            <div>
+                <label for="qtd_vendas">Quant. de Vendas</label>
+                <td><input type="text" name="qtd_vendas" id="qtd_vendas" oninput="atualizarTicketMedio()">
+            </div>
+            <div>
+                <label for="tkt_medio">Ticket Médio</label>
+                <input type="text" name="tkt_medio" id="tkt_medio" readonly>
+            </div>
+            <hr>
             <h5>RESUMO DE SERVIÇOS</H5>
-                <table>
-                    <tr>
-                        <td style="font-weight: bolder;" class="coluna1">Serviços</td>
-                        <td><input type="number" name="serviços1"></td>
-                    </tr>
-                </table>
-                <div style="text-align: right;">
-                    <button class="salvar" type="submit">Salvar</button>
-                    <a href="{{ url_for('index') }}"><button class="voltar" type="button">Voltar</button></a>
-                </div>
-            </fieldset>
-        </form>
-
-
+            <div>
+                <label for="servicos1">Serviços</label>
+                <input type="text" name="servicos1" id="servicos">
+            </div>   
+            <div style="text-align: right;">
+                <button class="salvar" type="submit">Salvar</button>
+                <a href="{{ url_for('index') }}"><button class="voltar" type="button">Voltar</button></a>
+            </div>
+        </fieldset>
+    </form>
 </div>
