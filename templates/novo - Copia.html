@@ -27,8 +27,18 @@
             background: #274360;
         }
 
+        input {
+            
+        }
+
+        input[type="date"] {
+            width: 100%;
+            font-size: large;
+            text-align: center;
+            font-weight: bolder;
+        }
+
         input[type="number"] {
-            width: 110px;
             text-align: right;
             font-size: medium;
         }
@@ -60,6 +70,13 @@
             width: 100px;
         }
 
+        fieldset div {
+            display: flex;
+            justify-content: space-between;
+            align-items: right;
+            margin-bottom: 5px;
+        }
+
    </style>
 
 </head>
@@ -84,52 +101,45 @@
      <form method="post" action="" >
         <fieldset>
             <h4>RESUMO DE VENDAS  -   <input type="date" name="data" id="data" tabindex="1"></h4>
-            <table>
-                <tr style="background-color: lightgray;">
-                    <th class="coluna1">Caixa n.º</th>
-                    <th><input type="number" name="caixa1" id="" style="background-color: lightgray;" tabindex="2"></th>
-                </tr>
-                <tr>
-                    <td style="background-color: lightgray;">DINHEIRO</td>
-                    <td><input name="dinheiro1" type="number" tabindex="3" oninput="atualizarTotal()"></td>
-                    
-                </tr>
-                <tr>
-                    <td class="coluna1" style="background-color: lightgray;">CARTÃO CRED</td>
-                    <td><input type="number" name="cartao_cred1" oninput="atualizarTotal()"></td>
-                
-                <tr>
-                    <td class="coluna1" style="background-color: lightgray;">CARTÃO DEB</td>
-                    <td><input type="number" name="cartao_deb1" oninput="atualizarTotal()"></td>
-                    
-                </tr>
-                <tr>
-                    <td class="coluna1" style="background-color: lightgray;">PIX</td>
-                    <td><input type="number" name="pix1" oninput="atualizarTotal()"></td>
-                
-                </tr>
-                <tr>
-                    <td class="coluna1" style="background-color: lightgray;">CHEQUE</td>
-                    <td><input type="number" name="cheque1" oninput="atualizarTotal()"></td>
-                    
-                </tr>
-                <tr>
-                    <td class="coluna1" style="background-color: lightgray;">TOTAL</td>
-                    <td><input type="number" style="background-color: lightgray; font-weight: bolder;" name="total1" readonly></td>
-                    
-                </tr>
-            </table>
+            <div>
+                <label for="caixa1">Caixa nº.</label>
+                <input type="text" id="caixa1" name="caixa1" required>
+            </div>
+            <div>
+                <label for="dinheiro1">Dinheiro</label>
+                <input type="number" name="dinheiro1" id="dinheiro1" oninput="atualizarTotal()">
+            </div>
+            <div>
+                <label for="cartao_cred1">CARTÃO CRED</label>
+                <input type="number" name="cartao_cred1" id="cartao_cred1" oninput="atualizarTotal()">
+            </div>
+            <div>
+                <label for="cartao_deb1">CARTÃO DEB</label>
+                <input type="number" name="cartao_deb1" id="cartao_deb1" oninput="atualizarTotal()">
+            </div>
+            <div>
+                <label for="pix1">PIX</label>
+                <input type="number" name="pix1" oninput="atualizarTotal()">
+            </div>
+            <div>
+                <label for="cheque1">CHEQUE</label>
+                <input type="number" name="cheque1" id="cheque1" oninput="atualizarTotal()">
+            </div>
+            <div>
+                <label>TOTAL</label>
+                <input type="number" name="total1" id="total1" readonly></td>  
+            </div>
             <hr>
                 <table>
-                    <tr>
-                        <td class="coluna1">Dinheiro Malote</td>
-                        <td><input type="number" name="malote1"></td>
-                    </tr>
-                    <tr class="despesa">
+                    <div>
+                        <label class="coluna1">Dinheiro Malote</label>
+                        <input type="number" name="malote1">                    
+                    </div>
+                    <div class="despesa">
                         <td style="font-weight: bolder;">Despesa</td>
                         <td><input type="number" name="despesa1"></td>
                         
-                    </tr>
+                    </div>
                     <tr>
                         <td style="font-weight: bolder;">Resultado</td>
                         <td><input type="number" name="resultado1" readonly></td>

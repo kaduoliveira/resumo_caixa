@@ -70,6 +70,7 @@
         font-size: medium;
         border-radius: 10px 3px;
         width: 120px;
+        margin: 5px;
     }
 
     button:hover{
@@ -81,9 +82,7 @@
    </style>
 
 </head>
-    <body>
-    
-    </script>
+<body>    
     <div class="floating-form">
         <h4>Listagem de Fechamentos de Caixa</h4> 
         <a href="{{ url_for('novo') }}"><button>Novo</button></a>
@@ -125,6 +124,4 @@
                 {% endfor %}
             </tbody>
         </table>
-        
-    
     </div>
