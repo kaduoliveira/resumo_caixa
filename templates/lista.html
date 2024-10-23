@@ -88,7 +88,12 @@
    </style>
 
 </head>
-<body>    
+<body>
+
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}    
+    
     <div class="floating-form">
         <h4>Listagem de Fechamentos de Caixa</h4> 
         <a href="{{ url_for('novo') }}"><button>Novo</button></a>

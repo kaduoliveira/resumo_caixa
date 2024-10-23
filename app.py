@@ -1,6 +1,10 @@
-from flask import Flask, render_template, url_for, request, redirect, flash
+from flask import Flask, render_template, url_for, request, redirect, flash, session
+
+
 
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = 'segredo_do_app'
 
 class Caixa:
     def __init__(self, id, data, caixa, dinheiro, cartao_cred, cartao_deb, pix, cheque, total, malote, sangria, resultado, qtd_vendas, tkt_medio, servicos):
@@ -41,6 +45,12 @@ def index():
 
 @app.route('/novo')
 def novo():
+
+    # Verificando se o usuario está logando antes de continuar
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        print('Redirecionado pro login.')
+        return redirect(url_for('login', proxima=url_for('novo')))
+
     return render_template('novo.html')
 
 @app.route('/criar', methods=['POST',])
@@ -76,7 +86,32 @@ def criar():
 
 @app.route('/login')
 def login():
-    return render_template('login.html')
+    proxima = request.args.get('proxima')
+    return render_template('login.html', proxima=proxima)
+
+@app.route('/autenticar', methods=['POST', ])
+def autenticar():
+
+    # Definindo uma senha padrão
+    senha_padrao = '123'
+
+    # Requisitando o valor do campo senha e usuario para comparação
+    senha = request.form['senha']
+    usuario = request.form['usuario']
+    proxima_pagina = request.form['proxima']
+
+    # Comparando senhas e aplicando condicional
+    if senha_padrao == senha:
+
+        # requisitando o usuario e mantendo na session para usar no flash
+        session['usuario_logado'] = usuario
+        flash(f'Olá, {usuario}. Seja bem vindo!')
+        return redirect(proxima_pagina)
+
+    else:
+        flash('Não foi possível fazer o login. Tente novamente')
+        return redirect(url_for('login'))
+
 
 
 if __name__ == '__main__':

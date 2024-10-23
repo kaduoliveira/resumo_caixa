@@ -93,7 +93,9 @@
 
 </head>
     <body>
-    
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
     <script>
 
         function atualizarTotal() {

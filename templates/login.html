@@ -90,14 +90,18 @@
 </head>
 <body>    
     <div class="floating-form">
-        <form method="post">
-            <h4>Login</h4> 
+        <form method="post" action="{{ url_for('autenticar') }}">
+            <input type="hidden" name="proxima" value="{{  proxima  }}">
+            <h3>Login</h3> 
             <div>
-                <label for="login">Usuário</label>
-                <input type="text" placeholder="Insira o seu ">
+                <label for="usuario">Usuário</label>
+                <input type="text" name="usuario" placeholder="Insira o seu usuário">
             </div>
             <div>
-                <label type="password")
-                        
+                <label for="senha">Senha</label>
+                <input type="password" name="senha" placeholder="Insira a sua senha">
+            </div>
+            <div>
+                <button type="submit">Enviar</button>                        
         </form>
-    </div>
+    </div>w
