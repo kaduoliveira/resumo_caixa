@@ -74,6 +74,10 @@ def criar():
     # Retornando a página de lista de caixas
     return redirect(url_for('index'))
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
