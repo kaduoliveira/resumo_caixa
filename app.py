@@ -41,8 +41,7 @@ def index():
 
 @app.route('/novo')
 def novo():
-    valor = 0
-    return render_template('novo.html', valor_padrao=valor)
+    return render_template('novo.html')
 
 @app.route('/criar', methods=['POST',])
 def criar():
