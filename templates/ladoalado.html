@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulários Repetidos</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css')}}">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Formulário 1 -->
+            <div class="col-md-4">
+                <form method="post" action="" style="border: 2px solid black; padding: 10px; font-size: large;">
+                    <h4>RESUMO DE VENDAS - <input type="date" name="data" id="data" tabindex="1"></h4>
+                    <div>
+                        <label for="caixa1">Caixa nº.</label>
+                        <input type="text" id="caixa1" name="caixa1" placeholder="*campo obrigatório" required>
+                    </div>
+                    <div>
+                        <label for="dinheiro1">Dinheiro</label>
+                        <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="dinheiro1" id="dinheiro1" oninput="atualizarTotal()">
+                    </div>
+                    <!-- Restante do formulário... -->
+                </form>
+            </div>
+            <div class="col-md-4">
+                <form method="post" action="" style="border: 2px solid black; padding: 10px; font-size: large;">
+                    <h4>RESUMO DE VENDAS - <input type="date" name="data" id="data" tabindex="1"></h4>
+                    <div>
+                        <label for="caixa1">Caixa nº.</label>
+                        <input type="text" id="caixa1" name="caixa1" placeholder="*campo obrigatório" required>
+                    </div>
+                    <div>
+                        <label for="dinheiro1">Dinheiro</label>
+                        <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="dinheiro1" id="dinheiro1" oninput="atualizarTotal()">
+                    </div>
+                    <!-- Restante do formulário... -->
+                </form>
+            </div>
+
+            <!-- Repita para outros formulários -->
+
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

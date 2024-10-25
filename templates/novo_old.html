@@ -28,7 +28,7 @@
         }
 
         input[type="number"] {
-            width: 110px;
+            width: 100px;
             text-align: right;
             font-size: medium;
         }
@@ -90,9 +90,12 @@
                     <th><input type="number" name="caixa1" id="" style="background-color: lightgray;" tabindex="2"></th>
                 </tr>
                 <tr>
-                    <td style="background-color: lightgray;">DINHEIRO</td>
+                    <td><label for="dinheiro">Dinheiro</label></td>
                     <td><input name="dinheiro1" type="number" tabindex="3" oninput="atualizarTotal()"></td>
-                    
+                    <td><input name="dinheiro2" type="number" tabindex="3" oninput="atualizarTotal()"></td>
+                    <td><input name="dinheiro3" type="number" tabindex="3" oninput="atualizarTotal()"></td>
+                    <td><input name="dinheiro4" type="number" tabindex="3" oninput="atualizarTotal()"></td>
+                    <td><input name="dinheiro_total" type="number" readonly></td>
                 </tr>
                 <tr>
                     <td class="coluna1" style="background-color: lightgray;">CARTÃO CRED</td>

@@ -4,7 +4,7 @@
 <head>
     <title>Página de Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=2.0">
-    
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css')}}">
    <style>
 
         body {
@@ -25,6 +25,14 @@
 
         html {
             background: #274360;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #274360;
+            border-radius: 10px 3px;
         }
 
         input[type="number"] {
@@ -61,34 +69,41 @@
             text-align: center;
         }
 
-    button {
-        padding: 5px 10px;
-        background-color: #274360;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        font-size: medium;
-        border-radius: 10px 3px;
-        width: 120px;
-        margin: 5px;
-    }
+        button {
+            padding: 5px 10px;
+            background-color: #274360;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: medium;
+            border-radius: 10px 3px;
+            width: 120px;
+            margin: 5px;
+        }
 
-    button:hover{
-        background-color: #2b6528;
-        color: #fff;
-        transition: background-color 0.3s ease;
-    }
+        button:hover{
+            background-color: #2b6528;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
 
-    .editar:hover {
-        background-color: yellow;
-        color: #000000;
-        transition: background-color 0.3s ease;
-    }
+        .editar:hover {
+            background-color: yellow;
+            color: #000000;
+            transition: background-color 0.3s ease;
+        }
 
    </style>
 
 </head>
-<body>    
+<body> 
+    
+    {% with messages = get_flashed_messages() %}
+    {% for message in get_flashed_messages() %}
+        <div class="alert alert-info">{{ message }}</div>
+    {% endfor %}  
+    {% endwith %}
+
     <div class="floating-form">
         <form method="post" action="{{ url_for('autenticar') }}">
             <input type="hidden" name="proxima" value="{{  proxima  }}">
@@ -104,4 +119,4 @@
             <div>
                 <button type="submit">Enviar</button>                        
         </form>
-    </div>w
+    </div>

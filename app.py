@@ -1,11 +1,12 @@
 from flask import Flask, render_template, url_for, request, redirect, flash, session
 
-
-
+# Instanciando o app
 app = Flask(__name__)
 
+# Definindo a chave secreta do app, necessária para a sessão(session)
 app.config['SECRET_KEY'] = 'segredo_do_app'
 
+# Definindo a classe Caixa
 class Caixa:
     def __init__(self, id, data, caixa, dinheiro, cartao_cred, cartao_deb, pix, cheque, total, malote, sangria, resultado, qtd_vendas, tkt_medio, servicos):
         self.id = id
@@ -34,8 +35,10 @@ lista = []
 caixa1 = Caixa(123, '2024-10-20', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 caixa2 = Caixa(456, '2024-10-20', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
+# Adicionando os objetos da classe Caixa na lista
 lista = [caixa1, caixa2]
 
+# Rota principal
 @app.route('/')
 def index():
     # Imprimindo os objetos da classe Caixa
@@ -43,6 +46,7 @@ def index():
         print(caixa)
     return render_template('lista.html', caixas=lista)
 
+# Rota que leva à página de criação de um novo caixa
 @app.route('/novo')
 def novo():
 
@@ -53,6 +57,7 @@ def novo():
 
     return render_template('novo.html')
 
+# Rota para criar um novo caixa
 @app.route('/criar', methods=['POST',])
 def criar():
    
@@ -84,11 +89,13 @@ def criar():
     # Retornando a página de lista de caixas
     return redirect(url_for('index'))
 
+# Rota para a página de login
 @app.route('/login')
 def login():
     proxima = request.args.get('proxima')
     return render_template('login.html', proxima=proxima)
 
+# Rota para autenticar o login
 @app.route('/autenticar', methods=['POST', ])
 def autenticar():
 
@@ -101,16 +108,28 @@ def autenticar():
     proxima_pagina = request.form['proxima']
 
     # Comparando senhas e aplicando condicional
+    # Caso as senhas sejam iguais, o usuario é redirecionado para a página de login
     if senha_padrao == senha:
 
         # requisitando o usuario e mantendo na session para usar no flash
         session['usuario_logado'] = usuario
-        flash(f'Olá, {usuario}. Seja bem vindo!')
+        flash('Olá, {usuario}. Seja bem vindo!'.format(usuario=usuario))
+        print('Usuario logado: {usuario}'.format(usuario=usuario))
+        if proxima_pagina == 'None':
+            proxima_pagina = '/'
         return redirect(proxima_pagina)
-
+    # Caso as senhas sejam diferentes, o usuario é redirecionado para a página de login com uma mensagem de erro
     else:
         flash('Não foi possível fazer o login. Tente novamente')
         return redirect(url_for('login'))
+
+# Rota para logout    
+@app.route('/logout')
+def logout():
+    session['usuario_logado'] = None
+    flash('Logout efetuado com sucesso!')
+    return redirect(url_for('index'))
+
 
 
 
