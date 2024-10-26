@@ -88,6 +88,7 @@
 
         .destaque {
             font-weight: bolder;
+            background-color: lightgray;
         }
 
         .caixa {
@@ -108,7 +109,7 @@
         {% endfor %}
     <script>
 
-        function atualizarTotal() {
+        function atualizarTotal1() {
             var dinheiro1= parseFloat(document.querySelector('input[name="dinheiro1"]').value) || 0;
             var cartao_cred1 = parseFloat(document.querySelector('input[name="cartao_cred1"]').value) || 0;
             var cartao_deb1 = parseFloat(document.querySelector('input[name="cartao_deb1"]').value) || 0;
@@ -129,7 +130,7 @@
             document.querySelector('input[name="total2"]').value = total2.toFixed(2);
 
         function atualizarTicketMedio() {
-            var total1 = parseFloat(document.querySelector('input[name="total1"]').value) || 0;
+            var total1 = parseFloat(document.querySelector('input[name="total"]').value) || 0;
             var qtd_vendas = parseFloat(document.querySelector('input[name="qtd_vendas"]').value) || 0;
 
             var ticket_medio = total1 / qtd_vendas;
@@ -166,14 +167,15 @@
     <form method="post" action="/criar" >
         <fieldset>
             <h4>RESUMO DE VENDAS  -   <input type="date" name="data" id="data"></h4>
+          
             <table>
                 <tr class="caixa">
                     <td><label for="caixa1">Caixa nº.</label></td>
                     <td><input type="number" id="caixa1" name="caixa1" tabindex="1"></td>
-                    <td><input type="number" id="caixa2" name="caixa1"></td>
-                    <td><input type="number" id="caixa3" name="caixa1"></td>
-                    <td><input type="number" id="caixa4" name="caixa1"></td>
-                    <td><input type="number" id="caixa_total" name="caixa1" readonly ></td>
+                    <td><input type="number" id="caixa2" name="caixa2"></td>
+                    <td><input type="number" id="caixa3" name="caixa3"></td>
+                    <td><input type="number" id="caixa4" name="caixa4"></td>
+                    <td style="text-align: center; background-color: #fff;">Total</td>
                 </tr>
                 <tr>
                     <td><label for="dinheiro1">Dinheiro</label></td>
@@ -221,8 +223,8 @@
                     <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="total1" id="total1" oninput="atualizarTicketMedio()" readonly></td>
                     <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="total2" id="total2" oninput="atualizarTicketMedio()" readonly></td>
                     <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="total3" id="total3" oninput="atualizarTicketMedio()" readonly></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="total4" id="total4" oninput="atualizarTicketMedio()" readonly></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="total_total" id="total_total" readonly></td>
+                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="total4" id="total4" readonly></td>
+                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="total_total" id="total_total" readonly oninput="atualizarTicketMedio()"></td>
                 </tr>
             </table>
             <hr>
@@ -242,28 +244,25 @@
                     <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="sangria3" id="sangria2"></td>
                     <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="sangria4" id="sangria2"></td>
                     <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="sangria_total" id="sangria2"></td>
+                </tr>  
+                <tr>
+                    <td><label class="destaque" for="resultado1">Resultado</label></td>
+                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado1" id="resultado1" readonly></td>
+                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado1" id="resultado2" readonly></td>
+                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado1" id="resultado3" readonly></td>
+                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado1" id="resultado4" readonly></td>
+                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado1" id="resultado_total" readonly></td>
+                </tr>
+                <hr>
+                <tr>
+                    <td colspan="2"><label for="qtd_vendas">Quantidade de Vendas</label></td>
+                    <td><input type="number" name="qtd_vendas" id="qtd_vendas" oninput="atualizarTicketMedio()"></td>
+                    <td></td>
+                    <td><label for="tkt_medio">Ticket Médio</label></td>
+                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="tkt_medio" id="tkt_medio" readonly></td>
                 </tr>
             </table>
-                
             
-            <tr>
-                <td><label class="destaque" for="resultado1">Resultado</label></td>
-                <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado1" id="resultado1" readonly></td>
-                <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado1" id="resultado2" readonly></td>
-                <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado1" id="resultado3" readonly></td>
-                <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado1" id="resultado4" readonly></td>
-                <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado1" id="resultado_total" readonly></td>
-
-            </tr>
-            <hr>
-            <div>
-                <label for="qtd_vendas">Quant. de Vendas</label>
-                <td><input type="number" name="qtd_vendas" id="qtd_vendas" oninput="atualizarTicketMedio()">
-            </div>
-            <div>
-                <label for="tkt_medio">Ticket Médio</label>
-                <input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="tkt_medio" id="tkt_medio" readonly>
-            </div>
             <hr>
             <h5>RESUMO DE SERVIÇOS</H5>
             <div>
