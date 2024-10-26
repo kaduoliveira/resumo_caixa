@@ -8,22 +8,23 @@ app.config['SECRET_KEY'] = 'segredo_do_app'
 
 # Definindo a classe Caixa
 class Caixa:
-    def __init__(self, id, data, caixa, dinheiro, cartao_cred, cartao_deb, pix, cheque, total, malote, sangria, resultado, qtd_vendas, tkt_medio, servicos):
+    def __init__(self, id, data, caixa1, dinheiro1, cartao_cred1, cartao_deb1, pix1, cheque1, total_total, malote1, sangria1, resultado1, qtd_vendas, tkt_medio, servicos1):
         self.id = id
         self.data = data
-        self.caixa = caixa
-        self.dinheiro = dinheiro
-        self.cartao_cred = cartao_cred
-        self.cartao_deb = cartao_deb
-        self.pix = pix
-        self.cheque = cheque
-        self.total = total
-        self.malote = malote
-        self.sangria = sangria
-        self.resultado = resultado
+        self.caixa1 = caixa1
+        self.dinheiro1 = dinheiro1
+        self.cartao_cred1 = cartao_cred1
+        self.cartao_deb1 = cartao_deb1
+        self.pix1 = pix1
+        self.cheque = cheque1
+        self.total_total = total_total
+        self.malote1 = malote1
+        self.sangria1 = sangria1
+        self.resultado1 = resultado1
         self.qtd_vendas = qtd_vendas
         self.tkt_medio = tkt_medio
-        self.servicos = servicos
+        self.servicos1 = servicos1
+
     
     def __str__(self):
         return f'id: {self.id} - Caixa nº.: {self.caixa} - Data: {self.data} - Total Vendas: {self.total} - Serviços: {self.servicos}'
@@ -62,23 +63,65 @@ def novo():
 def criar():
    
     # Requisitando os valores do formulário usando o método POST e o método request do Flask 'puro'
+    id = request.form['id']
     data = request.form['data']
-    caixa1 =request.form['caixa1']
+
+    caixa1 = request.form['caixa1']
+    caixa2 = request.form['caixa2']
+    caixa3 = request.form['caixa3']
+    caixa4 = request.form['caixa4']
+
     dinheiro1 = request.form['dinheiro1']
+    dinheiro2 = request.form['dinheiro2']
+    dinheiro3 = request.form['dinheiro3']
+    dinheiro4 = request.form['dinheiro4']
+    dinheiro_total = request.form['dinheiro_total']
+
     cartao_cred1 = request.form['cartao_cred1']
+    cartao_cred2 = request.form['cartao_cred2']
+    cartao_cred3 = request.form['cartao_cred3']
+    cartao_cred4 = request.form['cartao_cred4']
+    cartao_cred_total = request.form['cartao_cred_total']
+
     cartao_deb1 = request.form['cartao_deb1']
+
     pix1 = request.form['pix1']
+
     cheque1 = request.form['cheque1']
+
     total1 = request.form['total1']
+
     malote1 = request.form['malote1']
+
     sangria1 = request.form['sangria1']
+
     resultado1 = request.form['resultado1']
+
     qtd_vendas = request.form['qtd_vendas']
+
     tkt_medio = request.form['tkt_medio']
+
     servicos1 = request.form['servicos1']
+    servicos2 = request.form['servicos2']
+    servicos3 = request.form['servicos3']
+    servicos4 = request.form['servicos4']
+    servicos_total = request.form['servicos_total']
 
     # Criando um objeto da classe Caixa com os valores do formulário
-    caixa = Caixa(id, data, caixa1, dinheiro1, cartao_cred1, cartao_deb1, pix1, cheque1, total1, malote1, sangria1, resultado1, qtd_vendas, tkt_medio, servicos1)
+    caixa = Caixa(id, data,
+                   caixa1, caixa2, caixa3, caixa4, 
+                   dinheiro1, dinheiro2, dinheiro3, dinheiro4, dinheiro_total, 
+                   cartao_cred1, 
+                   cartao_deb1, 
+                   pix1, 
+                   cheque1, 
+                   total1, 
+                   malote1, 
+                   sangria1, 
+                   resultado1, 
+                   qtd_vendas, 
+                   tkt_medio, 
+                   servicos1, servicos2, servicos3, servicos4, servicos_total)
 
     # Adicionando o objeto da classe Caixa a lista de caixas
     lista.append(caixa)
