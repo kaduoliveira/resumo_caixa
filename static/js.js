@@ -130,6 +130,16 @@ function atualizarTicketMedio() {
     document.querySelector('input[name="tkt_medio"]').value = ticket_medio.toFixed(2);
 }
 
+// Calcula total de serviços e atualiza de acordo com o preenchemento dos campos da linha correspondente
+function atualizarTotalServicos() {
+    var servicos1 = parseFloat(document.querySelector('input[name="servicos1"]').value) || 0;
+    var servicos2 = parseFloat(document.querySelector('input[name="servicos2"]').value) || 0;
+    var servicos3 = parseFloat(document.querySelector('input[name="servicos3"]').value) || 0;
+    var servicos4 = parseFloat(document.querySelector('input[name="servicos4"]').value) || 0;
+    var servicos_total = servicos1 + servicos2 + servicos3 + servicos4;
+    document.querySelector('input[name="servicos_total"]').value = servicos_total.toFixed(2);
+}
+
 // Função para formatar o valor como moeda
 function formatCurrency(input) {
     let value = input.value;
