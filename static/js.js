@@ -122,6 +122,15 @@ function atualizarTotalSangria() {
     document.querySelector('input[name="sangria_total"]').value = sangria_total.toFixed(2);
 }
 
+// Calcular o Resultado de cada caixao e atualiza de acordo com o preenchemento dos campos da linha correspondente
+function calcularResultado() {
+    var dinheiro1 = parseFloat(document.querySelector('input[name="total1"]').value) || 0;
+    var malote1 = parseFloat(document.querySelector('input[name="malote1"]').value) || 0;
+    var sangria1 = parseFloat(document.querySelector('input[name="sangria1"]').value) || 0;
+    var resultado1 = malote1 - dinheiro1 + sangria1;
+    document.querySelector('input[name="resultado1"]').value = resultado1.toFixed(2);
+}
+
 // Calcula o ticket médio
 function atualizarTicketMedio() {
     var total1 = parseFloat(document.querySelector('input[name="total1"]').value) || 0;
