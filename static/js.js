@@ -123,7 +123,7 @@ function atualizarTotalSangria() {
 }
 
 // Calcular o Resultado de cada caixao e atualiza de acordo com o preenchemento dos campos da linha correspondente
-function calcularResultado() {
+function calcularResultado1() {
     var dinheiro1 = parseFloat(document.querySelector('input[name="total1"]').value) || 0;
     var malote1 = parseFloat(document.querySelector('input[name="malote1"]').value) || 0;
     var sangria1 = parseFloat(document.querySelector('input[name="sangria1"]').value) || 0;

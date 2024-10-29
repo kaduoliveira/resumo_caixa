@@ -172,7 +172,7 @@ def criar():
     total2 = request.form['total2']
     total3 = request.form['total3']
     total4 = request.form['total4']
-    total_total = request.form['total_total']
+    total_total = total1 + total2 + total3 + total4  #request.form['total_total']
     
     malote1 = request.form['malote1']
     malote2 = request.form['malote2']
@@ -190,7 +190,7 @@ def criar():
     resultado2 = request.form['resultado2']
     resultado3 = request.form['resultado3']
     resultado4 = request.form['resultado4']
-    resultado_total = request.form['resultado_total']
+    resultado_total = float(resultado1 + resultado2 + resultado3 + resultado4) #request.form['resultado_total']
 
     qtd_vendas = request.form['qtd_vendas']
 
@@ -269,6 +269,15 @@ def logout():
     flash('Logout efetuado com sucesso!')
     return redirect(url_for('index'))
 
+@app.route('/editar/<int:id>')
+def editar(id):
+    pass
+    '''# Verificando se o usuario está logando antes de continuar
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        print('Redirecionado pro login.')
+        return redirect(url_for('login', proxima=url_for('editar')))
+    caixa = Caixa.query.filter_by(id=id).first()
+    return render_template('editar.html', caixa=caixa)'''
 
 if __name__ == '__main__':
     app.run(debug=True)

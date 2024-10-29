@@ -32,7 +32,7 @@
                 </tr>
                 <tr>
                     <td><label for="dinheiro1">Dinheiro</label></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control coluna1" placeholder="0.00" id="dinheiro1" name="dinheiro1" oninput="atualizarTotal1(); atualizarTotalDinheiro()"></td>
+                    <td><input type="number" step="0.01" min="0" class="form-control coluna1" placeholder="0.00" id="dinheiro1" name="dinheiro1" oninput="atualizarTotal1(); atualizarTotalDinheiro(); calcularResultado1()"></td>
                     <td><input type="number" step="0.01" min="0" class="form-control coluna2" placeholder="0.00" id="dinheiro2" name="dinheiro2" oninput="atualizarTotal2(); atualizarTotalDinheiro()"></td>
                     <td><input type="number" step="0.01" min="0" class="form-control coluna3" placeholder="0.00" id="dinheiro3" name="dinheiro3" oninput="atualizarTotal3(); atualizarTotalDinheiro()"></td>
                     <td><input type="number" step="0.01" min="0" class="form-control coluna4" placeholder="0.00" id="dinheiro4" name="dinheiro4" oninput="atualizarTotal4(); atualizarTotalDinheiro()"></td>
@@ -84,7 +84,7 @@
             <table>
                 <tr>
                     <td><label for="malote1">Dinheiro Malote</label></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="malote1" id="malote1" oninput="atualizarTotalMalotes()"></td>
+                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="malote1" id="malote1" oninput="atualizarTotalMalotes(); calcularResultado1()"></td>
                     <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="malote2" id="malote2" oninput="atualizarTotalMalotes()"></td>
                     <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="malote3" id="malote3" oninput="atualizarTotalMalotes()"></td>
                     <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="malote4" id="malote4" oninput="atualizarTotalMalotes()"></td>
@@ -92,7 +92,7 @@
                 </tr>
                 <tr class="sangria">
                     <td><label for="sangria1">Sangria</label></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="sangria1" id="sangria1" oninput="atualizarTotalSangria()"></td>
+                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="sangria1" id="sangria1" oninput="atualizarTotalSangria(); calcularResultado1()"></td>
                     <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="sangria2" id="sangria2" oninput="atualizarTotalSangria()"></td>
                     <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="sangria3" id="sangria3" oninput="atualizarTotalSangria()"></td>
                     <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="sangria4" id="sangria4" oninput="atualizarTotalSangria()"></td>
@@ -126,9 +126,9 @@
                     <td class="destaque"><input type="number" step="0.01" min="0" class="form-control destaque" placeholder="0.00" name="servicos_total" id="servicos_total"></td>
                 </tr>   
             </table>   
-            <div style="text-align: right;">
-                <button class="salvar" type="submit">Salvar</button>
+            <div style="text-align: right;">                
                 <a href="{{ url_for('index') }}"><button class="voltar" type="button">Voltar</button></a>
+                <button class="salvar" type="submit">Salvar</button>
             </div>
         </fieldset>
     </form>
