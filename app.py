@@ -1,7 +1,11 @@
 from flask import Flask, render_template, url_for, request, redirect, flash, session
+from flask_sqlalchemy import SQLAlchemy
+
 
 # Instanciando o app
 app = Flask(__name__)
+
+db = SQLAlchemy(app)
 
 # Definindo a chave secreta do app, necessária para a sessão(session)
 app.config['SECRET_KEY'] = 'segredo_do_app'

@@ -90,5 +90,46 @@ cursor.execute('''
                PRIMARY KEY (id)
                ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
 
-cursor.execute("SHOW TABLES")
+cursor.execute("DROP TABLE IF EXISTS usuarios")
+cursor.execute('''
+               CREATE table usuarios (
+               id int(11) NOT NULL AUTO_INCREMENT,
+               usuario varchar(40) NOT NULL,
+               senha varchar(100) NOT NULL,
+               PRIMARY KEY (id)
+               ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;''')
 
+# Inserindo dados na tabela
+usuarios_sql ='INSERT INTO usuarios (usuario, senha) VALUES (%s, %s)'
+usuarios_valores = [
+    ("kadu", 123),
+    ("caixa", 123)
+]
+
+caixas_sql = 'INSERT INTO caixas (data, caixa1, total_total, qtd_vendas, tkt_medio, servicos_total) VALUES (%s, %s, %s, %s, %s, %s)'
+caixas_valores = [
+    ("2023-01-01", 1, 100, 10, 10, 10),
+    ("2023-01-02", 2, 200, 20, 20, 20),
+    ("2023-01-03", 3, 300, 30, 30, 30)
+]
+
+cursor.executemany(caixas_sql, caixas_valores)
+cursor.executemany(usuarios_sql, usuarios_valores)
+
+# Mostrando os dados da tabela caixas
+cursor.execute("SELECT data, caixa1, total_total, qtd_vendas, tkt_medio, servicos_total FROM caixas")
+print('------------------caixas------------------')
+for caixa in cursor.fetchall():
+    print(caixa)
+
+
+# Mostrando os dados da tabela usuarios
+cursor.execute("SELECT * FROM usuarios")
+print('------------------usuarios------------------')
+for usuario in cursor.fetchall():
+    print(usuario)
+
+conn.commit()
+
+cursor.close()
+conn.close()
