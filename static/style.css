@@ -90,3 +90,8 @@ h3, h4, h5 {
 .caixa input {
     background-color: lightgray;
 }
+
+button.topo {
+    text-align: right;
+    align-items: right;
+}

@@ -102,8 +102,8 @@
     {% for message in get_flashed_messages() %}
         <div class="alert alert-info">{{ message }}</div>
     {% endfor %}    
-    <a href="{{ url_for('login') }}"><button>Login</button></a>
-        <a href="{{ url_for('logout') }}"><button class="logout">Logout</button></a>
+    <a href="{{ url_for('login') }}" class="topo"><button>Login</button></a>
+    <a href="{{ url_for('logout') }}" class="topo"><button class="logout">Logout</button></a>
     <div class="floating-form">
         
         <h4>Listagem de Fechamentos de Caixa</h4> 

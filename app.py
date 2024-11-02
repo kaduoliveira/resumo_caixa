@@ -1,15 +1,25 @@
 from flask import Flask, render_template, url_for, request, redirect, flash, session
 from flask_sqlalchemy import SQLAlchemy
+from models import Caixa, Usuario
 
 
 # Instanciando o app
 app = Flask(__name__)
-
-db = SQLAlchemy(app)
-
 # Definindo a chave secreta do app, necessária para a sessão(session)
 app.config['SECRET_KEY'] = 'segredo_do_app'
+# Definindo a URI do banco de dados
+app.config['SQLALCHEMY_DATABASE_URI'] = 'SGBD://{usuario}:{senha}@{servidor}/{database}'.format(
+    SGBD = 'mysql+mysqlconnector',
+    usuario = 'root',
+    senha = 'sumimasen',
+    servidor = 'localhost',
+    database = 'caixa'
+)
 
+# Definindo o banco de dados
+db = SQLAlchemy(app)
+
+'''
 # Definindo a classe Caixa
 class Caixa:
     def __init__(self, id, data, 
@@ -100,6 +110,7 @@ class Caixa:
     def __str__(self):
         return f'id: {self.id} - Caixa nº.: {self.caixa1} - Data: {self.data} - Total Vendas: {self.total_total} - Serviços: {self.servicos_total}'
 
+        
 # Criando uma lista de objetos da classe Caixa
 lista = []
 
@@ -109,10 +120,12 @@ caixa2 = Caixa(456, '2024-10-20', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 # Adicionando os objetos da classe Caixa na lista
 lista = [caixa1, caixa2]
+'''
 
 # Rota principal
 @app.route('/')
 def index():
+    
     # Imprimindo os objetos da classe Caixa
     for caixa in lista:
         print(caixa1)
@@ -194,7 +207,7 @@ def criar():
     resultado2 = request.form['resultado2']
     resultado3 = request.form['resultado3']
     resultado4 = request.form['resultado4']
-    resultado_total = float(resultado1 + resultado2 + resultado3 + resultado4) #request.form['resultado_total']
+    resultado_total = request.form['resultado_total']
 
     qtd_vendas = request.form['qtd_vendas']
 

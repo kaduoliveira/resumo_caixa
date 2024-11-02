@@ -124,11 +124,44 @@ function atualizarTotalSangria() {
 
 // Calcular o Resultado de cada caixao e atualiza de acordo com o preenchemento dos campos da linha correspondente
 function calcularResultado1() {
-    var dinheiro1 = parseFloat(document.querySelector('input[name="total1"]').value) || 0;
+    var dinheiro1 = parseFloat(document.querySelector('input[name="dinheiro1"]').value) || 0;
     var malote1 = parseFloat(document.querySelector('input[name="malote1"]').value) || 0;
     var sangria1 = parseFloat(document.querySelector('input[name="sangria1"]').value) || 0;
-    var resultado1 = malote1 - dinheiro1 + sangria1;
+    var resultado1 = dinheiro1 - malote1 + sangria1;
     document.querySelector('input[name="resultado1"]').value = resultado1.toFixed(2);
+}
+
+function calcularResultado2() {
+    var dinheiro2 = parseFloat(document.querySelector('input[name="dinheiro2"]').value) || 0;
+    var malote2 = parseFloat(document.querySelector('input[name="malote2"]').value) || 0;
+    var sangria2 = parseFloat(document.querySelector('input[name="sangria2"]').value) || 0;
+    var resultado2 = malote2 - dinheiro2 + sangria2;
+    document.querySelector('input[name="resultado2"]').value = resultado2.toFixed(2);
+}
+
+function calcularResultado3() {
+    var dinheiro3 = parseFloat(document.querySelector('input[name="dinheiro3"]').value) || 0;
+    var malote3 = parseFloat(document.querySelector('input[name="malote3"]').value) || 0;
+    var sangria3 = parseFloat(document.querySelector('input[name="sangria3"]').value) || 0;
+    var resultado3 = malote3 - dinheiro3 + sangria3;
+    document.querySelector('input[name="resultado3"]').value = resultado3.toFixed(2);
+}
+
+function calcularResultado4() {
+    var dinheiro4 = parseFloat(document.querySelector('input[name="dinheiro4"]').value) || 0;
+    var malote4 = parseFloat(document.querySelector('input[name="malote4"]').value) || 0;
+    var sangria4 = parseFloat(document.querySelector('input[name="sangria4"]').value) || 0;
+    var resultado4 = malote4 - dinheiro4 + sangria4;
+    document.querySelector('input[name="resultado4"]').value = resultado4.toFixed(2);
+}
+
+function calcularResultadoTotal() {
+    var resultado1 = parseFloat(document.querySelector('input[name="resultado1"]').value) || 0;
+    var resultado2 = parseFloat(document.querySelector('input[name="resultado2"]').value) || 0;
+    var resultado3 = parseFloat(document.querySelector('input[name="resultado3"]').value) || 0;
+    var resultado4 = parseFloat(document.querySelector('input[name="resultado4"]').value) || 0;
+    var resultado_total = resultado1 + resultado2 + resultado3 + resultado4;
+    document.querySelector('input[name="resultado_total"]').value = resultado_total.toFixed(2);
 }
 
 // Calcula o ticket médio
