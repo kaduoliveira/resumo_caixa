@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for, request, redirect, flash, session
 from app import app, db
-from models_ import Caixa, Usuario
+from models import Caixa, Usuario
 
 
 # Criando uma lista de objetos da classe Caixa

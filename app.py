@@ -2,7 +2,6 @@ from flask import Flask, render_template, url_for, redirect, request, flash, ses
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import false
 
-
 # Instanciando o app
 app = Flask(__name__)
 
@@ -11,7 +10,6 @@ app.config.from_pyfile('config.py')
 
 # Definindo o banco de dados
 db = SQLAlchemy(app)
-
 
 # Define a classe Caixa database
 class Caixas(db.Model):
@@ -77,7 +75,7 @@ class Caixas(db.Model):
     def __repr__(self):
         return f'id: {self.id} - Caixa nº.: {self.caixa1} - Data: {self.data} - Total Vendas: {self.total_total} - Serviços: {self.servicos_total}'
     
-class Usuario(db.Model):
+class Usuarios(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     usuario = db.Column(db.String(40), nullable=False)
     senha = db.Column(db.String(100), nullable=False)
@@ -85,12 +83,12 @@ class Usuario(db.Model):
     def __repr__(self):
         return f'id: {self.id} - Usuario: {self.usuario} - Senha: {self.senha}'
     
-
 # Rota principal
 @app.route('/')
 def index():
     # Efetuando uma query direto no banco que vai recber uma lista ordenada pelo id
-    lista = Caixas.query.order_by(Caixas.id)    
+    lista = Caixas.query.order_by(Caixas.id)
+    print('Listando Caixas presentes no banco de dados') 
     return render_template('lista.html', caixas=lista)
 
 # Rota que leva à página de criação de um novo caixa
@@ -181,31 +179,42 @@ def criar():
     servicos4 = request.form['servicos4']
     servicos_total = request.form['servicos_total']
 
+    print(data)
+    data_comparada = Caixas.query.filter_by(data=data).first()
+    print(data_comparada.data)
+    data_comparada = data_comparada.data
+    print(data_comparada)
+    if data_comparada.data == data:
+        flash('Já existe um caixa salvo para essa data.')
+        return redirect(url_for(index))
+    
     # Criando um objeto da classe Caixas com os valores do formulário
-    caixa = Caixas(
-        id, data, 
-        caixa1, caixa2, caixa3, caixa4, 
-        dinheiro1, dinheiro2, dinheiro3, dinheiro4, dinheiro_total, 
-        cartao_cred1, cartao_cred2, cartao_cred3, cartao_cred4, cartao_cred_total, 
-        cartao_deb1, cartao_deb2, cartao_deb3, cartao_deb4, cartao_deb_total, 
-        pix1, pix2, pix3, pix4, pix_total, 
-        cheque1, cheque2, cheque3, cheque4, cheque_total, 
-        total1, total2, total3, total4, total_total,  
-        malote1, malote2, malote3, malote4, malote_total, 
-        sangria1, sangria2, sangria3, sangria4, sangria_total, 
-        resultado1, resultado2, resultado3, resultado4, resultado_total, 
-        qtd_vendas, tkt_medio, 
-        servicos1, servicos2, servicos3, servicos4, servicos_total)
-
-    # Adicionando o objeto da classe Caixa a lista de caixas
-    lista.append(caixa)
+    novo_caixa = Caixas(
+        data=data,
+        caixa1=caixa1, caixa2=caixa2, caixa3=caixa3, caixa4=caixa4,
+        dinheiro1=dinheiro1, dinheiro2=dinheiro2, dinheiro3=dinheiro3, dinheiro4=dinheiro4, dinheiro_total=dinheiro_total,
+        cartao_cred1=cartao_cred1, cartao_cred2=cartao_cred2, cartao_cred3=cartao_cred3, cartao_cred4=cartao_cred4, cartao_cred_total=cartao_cred_total,
+        cartao_deb1=cartao_deb1, cartao_deb2=cartao_deb2, cartao_deb3=cartao_deb3, cartao_deb4=cartao_deb4, cartao_deb_total=cartao_deb_total,
+        pix1=pix1, pix2=pix2, pix3=pix3, pix4=pix4, pix_total=pix_total,
+        cheque1=cheque1, cheque2=cheque2, cheque3=cheque3, cheque4=cheque4, cheque_total=cheque_total,
+        total1=total1, total2=total2, total3=total3, total4=total4, total_total=total_total,
+        malote1=malote1, malote2=malote2, malote3=malote3, malote4=malote4, malote_total=malote_total,
+        sangria1=sangria1, sangria2=sangria2, sangria3=sangria3, sangria4=sangria4, sangria_total=sangria_total,
+        resultado1=resultado1, resultado2=resultado2, resultado3=resultado3, resultado4=resultado4, resultado_total=resultado_total,
+        qtd_vendas=qtd_vendas,
+        tkt_medio=tkt_medio,
+        servicos1=servicos1, servicos2=servicos2, servicos3=servicos3, servicos4=servicos4, servicos_total=servicos_total
+    ) 
 
     # Imprimindo o objeto da classe Caixa
-    print(caixa)
+    print(novo_caixa)
+
+    # Adicionando o novo caixa no banco
+    db.session.add(novo_caixa)
+    db.session.commit()  # Salvando no banco de dados
 
     # Retornando a página de lista de caixas
     return redirect(url_for('index'))
-
 
 # Rota para a página de login
 @app.route('/login')
@@ -216,18 +225,16 @@ def login():
 # Rota para autenticar o login
 @app.route('/autenticar', methods=['POST', ])
 def autenticar():
-
-    # Definindo uma senha padrão
-    senha_padrao = Usuario.query.filter_by(usuario=request.form['usuario'])
+    # Comparando o valor presente no banco de dados com o obtido no formulario, essa query retorna um True/False
+    senha_padrao = Usuarios.query.filter_by(senha=request.form['senha']).first()
+    print(senha_padrao)
 
     # Requisitando o valor do campo senha e usuario para comparação
     senha = request.form['senha']
     usuario = request.form['usuario']
     proxima_pagina = request.form['proxima']
 
-    # Comparando senhas e aplicando condicional
-    # Caso as senhas sejam iguais, o usuario é redirecionado para a página de login
-    if senha_padrao == senha:
+    if senha_padrao:
 
         # requisitando o usuario e mantendo na session para usar no flash
         session['usuario_logado'] = usuario
@@ -257,8 +264,6 @@ def editar(id):
         return redirect(url_for('login', proxima=url_for('editar')))
     caixa = Caixa.query.filter_by(id=id).first()
     return render_template('editar.html', caixa=caixa)'''
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)

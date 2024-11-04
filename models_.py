@@ -1,4 +1,5 @@
 from app import db
+
 # Define a classe Caixa database
 class Caixas(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -7,7 +8,6 @@ class Caixas(db.Model):
     caixa2 = db.Column(db.Integer, nullable=True)
     caixa3 = db.Column(db.Integer, nullable=True)
     caixa4 = db.Column(db.Integer, nullable=True)
-    caixa_total = db.Column(db.Integer, nullable=True)
     dinheiro1 = db.Column(db.Float, nullable=True)
     dinheiro2 = db.Column(db.Float, nullable=True)
     dinheiro3 = db.Column(db.Float, nullable=True)
