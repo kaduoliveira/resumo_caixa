@@ -218,7 +218,7 @@ def login():
 def autenticar():
 
     # Definindo uma senha padrão
-    senha_padrao = '123'
+    senha_padrao = Usuario.query.filter_by(usuario=request.form['usuario'])
 
     # Requisitando o valor do campo senha e usuario para comparação
     senha = request.form['senha']
