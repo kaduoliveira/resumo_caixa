@@ -1,6 +1,6 @@
-from app import app, db
-
-class Caixa(db.Model):
+from app import db
+# Define a classe Caixa database
+class Caixas(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     data = db.Column(db.Date, nullable=False)
     caixa1 = db.Column(db.Integer, nullable=False)

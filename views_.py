@@ -1,96 +1,25 @@
-from flask import Flask, render_template, url_for, redirect, request, flash, session
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import false
+from flask import Flask, render_template, url_for, request, redirect, flash, session
+from app import app, db
+from models_ import Caixa, Usuario
 
 
-# Instanciando o app
-app = Flask(__name__)
+# Criando uma lista de objetos da classe Caixa
+lista = []
 
-# Carregando as configurações do arquivo config.py
-app.config.from_pyfile('config.py')
+# Criando objetos da classe Caixa
+caixa1 = Caixa(123, '2024-10-20', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+caixa2 = Caixa(456, '2024-10-20', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
-# Definindo o banco de dados
-db = SQLAlchemy(app)
-
-
-# Define a classe Caixa database
-class Caixas(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    data = db.Column(db.Date, nullable=False)
-    caixa1 = db.Column(db.Integer, nullable=False)
-    caixa2 = db.Column(db.Integer, nullable=True)
-    caixa3 = db.Column(db.Integer, nullable=True)
-    caixa4 = db.Column(db.Integer, nullable=True)
-    dinheiro1 = db.Column(db.Float, nullable=True)
-    dinheiro2 = db.Column(db.Float, nullable=True)
-    dinheiro3 = db.Column(db.Float, nullable=True)
-    dinheiro4 = db.Column(db.Float, nullable=True)
-    dinheiro_total = db.Column(db.Float, nullable=True)
-    cartao_cred1 = db.Column(db.Float, nullable=True)
-    cartao_cred2 = db.Column(db.Float, nullable=True)
-    cartao_cred3 = db.Column(db.Float, nullable=True)
-    cartao_cred4 = db.Column(db.Float, nullable=True)
-    cartao_cred_total = db.Column(db.Float, nullable=True)
-    cartao_deb1 = db.Column(db.Float, nullable=True)
-    cartao_deb2 = db.Column(db.Float, nullable=True)
-    cartao_deb3 = db.Column(db.Float, nullable=True)
-    cartao_deb4 = db.Column(db.Float, nullable=True)
-    cartao_deb_total = db.Column(db.Float, nullable=True)
-    pix1 = db.Column(db.Float, nullable=True)
-    pix2 = db.Column(db.Float, nullable=True)
-    pix3 = db.Column(db.Float, nullable=True)
-    pix4 = db.Column(db.Float, nullable=True)
-    pix_total = db.Column(db.Float, nullable=True)
-    cheque1 = db.Column(db.Float, nullable=True)
-    cheque2 = db.Column(db.Float, nullable=True)
-    cheque3 = db.Column(db.Float, nullable=True)
-    cheque4 = db.Column(db.Float, nullable=True)
-    cheque_total = db.Column(db.Float, nullable=True)
-    total1 = db.Column(db.Float, nullable=True)
-    total2 = db.Column(db.Float, nullable=True)
-    total3 = db.Column(db.Float, nullable=True)
-    total4 = db.Column(db.Float, nullable=True)
-    total_total = db.Column(db.Float, nullable=True)
-    malote1 = db.Column(db.Float, nullable=True)
-    malote2 = db.Column(db.Float, nullable=True)
-    malote3 = db.Column(db.Float, nullable=True)
-    malote4 = db.Column(db.Float, nullable=True)
-    malote_total = db.Column(db.Float, nullable=True)
-    sangria1 = db.Column(db.Float, nullable=True)
-    sangria2 = db.Column(db.Float, nullable=True)
-    sangria3 = db.Column(db.Float, nullable=True)
-    sangria4 = db.Column(db.Float, nullable=True)
-    sangria_total = db.Column(db.Float, nullable=True)
-    resultado1 = db.Column(db.Float, nullable=True)
-    resultado2 = db.Column(db.Float, nullable=True)
-    resultado3 = db.Column(db.Float, nullable=True)
-    resultado4 = db.Column(db.Float, nullable=True)
-    resultado_total = db.Column(db.Float, nullable=True)
-    qtd_vendas = db.Column(db.Integer, nullable=True)
-    tkt_medio = db.Column(db.Float, nullable=True)
-    servicos1 = db.Column(db.Float, nullable=True)
-    servicos2 = db.Column(db.Float, nullable=True)
-    servicos3 = db.Column(db.Float, nullable=True)
-    servicos4 = db.Column(db.Float, nullable=True)
-    servicos_total = db.Column(db.Float, nullable=True)
-
-    def __repr__(self):
-        return f'id: {self.id} - Caixa nº.: {self.caixa1} - Data: {self.data} - Total Vendas: {self.total_total} - Serviços: {self.servicos_total}'
-    
-class Usuario(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    usuario = db.Column(db.String(40), nullable=False)
-    senha = db.Column(db.String(100), nullable=False)
-
-    def __repr__(self):
-        return f'id: {self.id} - Usuario: {self.usuario} - Senha: {self.senha}'
-    
+# Adicionando os objetos da classe Caixa na lista
+lista = [caixa1, caixa2]
 
 # Rota principal
 @app.route('/')
 def index():
-    # Efetuando uma query direto no banco que vai recber uma lista ordenada pelo id
-    lista = Caixas.query.order_by(Caixas.id)    
+    
+    # Imprimindo os objetos da classe Caixa
+    for caixa in lista:
+        print(caixa1)
     return render_template('lista.html', caixas=lista)
 
 # Rota que leva à página de criação de um novo caixa
@@ -181,8 +110,8 @@ def criar():
     servicos4 = request.form['servicos4']
     servicos_total = request.form['servicos_total']
 
-    # Criando um objeto da classe Caixas com os valores do formulário
-    caixa = Caixas(
+    # Criando um objeto da classe Caixa com os valores do formulário
+    caixa = Caixa(
         id, data, 
         caixa1, caixa2, caixa3, caixa4, 
         dinheiro1, dinheiro2, dinheiro3, dinheiro4, dinheiro_total, 
@@ -257,8 +186,3 @@ def editar(id):
         return redirect(url_for('login', proxima=url_for('editar')))
     caixa = Caixa.query.filter_by(id=id).first()
     return render_template('editar.html', caixa=caixa)'''
-
-
-
-if __name__ == '__main__':
-    app.run(debug=True)

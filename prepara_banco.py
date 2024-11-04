@@ -32,7 +32,7 @@ cursor.execute('''
                id int(11) NOT NULL AUTO_INCREMENT,
                data date NOT NULL,
                caixa1 int(11) NOT NULL,
-               caixxa2 int(11),
+               caixa2 int(11),
                caixa3 int(11),
                caixa4 int(11),
                dinheiro1 DECIMAL(10, 2),
