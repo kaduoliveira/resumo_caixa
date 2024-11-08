@@ -20,11 +20,11 @@
     <form method="post" action="/criar" >
         <fieldset>
             <h4>RESUMO DE VENDAS</h4>
-            <input type="date" name="data" id="data">
+            <input type="date" name="data" id="data" required>
             <table>
                 <tr class="caixa">
                     <td><label for="caixa1">Caixa nº.</label></td>
-                    <td><input type="number" id="caixa1" name="caixa1"></td>
+                    <td><input type="number" id="caixa1" name="caixa1" required></td>
                     <td><input type="number" id="caixa2" name="caixa2"></td>
                     <td><input type="number" id="caixa3" name="caixa3"></td>
                     <td><input type="number" id="caixa4" name="caixa4"></td>
@@ -32,20 +32,20 @@
                 </tr>
                 <tr>
                     <td><label for="dinheiro1">Dinheiro</label></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control coluna1" placeholder="0.00" id="dinheiro1" name="dinheiro1" oninput="atualizarTotal1(); atualizarTotalDinheiro(); calcularResultado1()"></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control coluna2" placeholder="0.00" id="dinheiro2" name="dinheiro2" oninput="atualizarTotal2(); atualizarTotalDinheiro(); calcularResultado2() "></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control coluna3" placeholder="0.00" id="dinheiro3" name="dinheiro3" oninput="atualizarTotal3(); atualizarTotalDinheiro(); calcularResultado4()"></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control coluna4" placeholder="0.00" id="dinheiro4" name="dinheiro4" oninput="atualizarTotal4(); atualizarTotalDinheiro(); calcularResultado4()"></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control coluna5" placeholder="0.00" id="dinheiro_total" name="dinheiro_total" readonly></td>
+                    <td><input type="number" step="0.01" min="0" class="coluna1" placeholder="0.00" id="dinheiro1" name="dinheiro1" oninput="atualizarTotal1(); atualizarTotalDinheiro(); calcularResultado1()"></td>
+                    <td><input type="number" step="0.01" min="0" class="coluna2" placeholder="0.00" id="dinheiro2" name="dinheiro2" oninput="atualizarTotal2(); atualizarTotalDinheiro(); calcularResultado2() "></td>
+                    <td><input type="number" step="0.01" min="0" class="coluna3" placeholder="0.00" id="dinheiro3" name="dinheiro3" oninput="atualizarTotal3(); atualizarTotalDinheiro(); calcularResultado4()"></td>
+                    <td><input type="number" step="0.01" min="0" class="coluna4" placeholder="0.00" id="dinheiro4" name="dinheiro4" oninput="atualizarTotal4(); atualizarTotalDinheiro(); calcularResultado4()"></td>
+                    <td><input type="number" step="0.01" min="0" class="coluna5" placeholder="0.00" id="dinheiro_total" name="dinheiro_total" readonly></td>
                     
                 </tr>
                 <tr>
                     <td><label for="cartao_cred1">CARTÃO CRED</label></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" id="cartao_cred1" name="cartao_cred1" oninput="atualizarTotal1(); atualizarTotalCartaoCred()"></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" id="cartao_cred2" name="cartao_cred2" oninput="atualizarTotal2(); atualizarTotalCartaoCred()"></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" id="cartao_cred3" name="cartao_cred3" oninput="atualizarTotal3(); atualizarTotalCartaoCred()"></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00"id="cartao_cred4" name="cartao_cred4" oninput="atualizarTotal4(); atualizarTotalCartaoCred()"></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" id="cartao_cred_total" name="cartao_cred_total" readonly></td>
+                    <td><input type="number" step="0.01" min="0" class="" placeholder="0.00" id="cartao_cred1" name="cartao_cred1" oninput="atualizarTotal1(); atualizarTotalCartaoCred()"></td>
+                    <td><input type="number" step="0.01" min="0" class="" placeholder="0.00" id="cartao_cred2" name="cartao_cred2" oninput="atualizarTotal2(); atualizarTotalCartaoCred()"></td>
+                    <td><input type="number" step="0.01" min="0" class="" placeholder="0.00" id="cartao_cred3" name="cartao_cred3" oninput="atualizarTotal3(); atualizarTotalCartaoCred()"></td>
+                    <td><input type="number" step="0.01" min="0" class="" placeholder="0.00"id="cartao_cred4" name="cartao_cred4" oninput="atualizarTotal4(); atualizarTotalCartaoCred()"></td>
+                    <td><input type="number" step="0.01" min="0" class="" placeholder="0.00" id="cartao_cred_total" name="cartao_cred_total" readonly></td>
                 </tr>                
                 <tr>
                     <td><label for="cartao_deb1">CARTÃO DEB</label></td>
@@ -128,7 +128,7 @@
             </table>   
             <div style="text-align: right;">                
                 <a href="{{ url_for('index') }}"><button class="voltar" type="button">Voltar</button></a>
-                <button type="button" onclick="calcularResultadoTotal(); atualizarTotalTotal()">Calcular</button>
+                <button type="button" onclick="calcular(); calcularResultadoTotal(); atualizarTotalTotal()">Calcular</button>
                 <button class="salvar" type="submit">Salvar</button>
             </div>
         </fieldset>

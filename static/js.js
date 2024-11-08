@@ -127,7 +127,7 @@ function calcularResultado1() {
     var dinheiro1 = parseFloat(document.querySelector('input[name="dinheiro1"]').value) || 0;
     var malote1 = parseFloat(document.querySelector('input[name="malote1"]').value) || 0;
     var sangria1 = parseFloat(document.querySelector('input[name="sangria1"]').value) || 0;
-    var resultado1 = dinheiro1 - malote1 + sangria1;
+    var resultado1 = malote1 - dinheiro1 + sangria1;
     document.querySelector('input[name="resultado1"]').value = resultado1.toFixed(2);
 }
 
@@ -207,3 +207,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+function calcular() {
+    atualizarTotal1();
+    atualizarTotal2();
+    atualizarTotal3();
+    atualizarTotal4();
+    atualizarTotalTotal();
+    
+}

@@ -1,10 +1,10 @@
 from app import app
-from flask_wtf import FlaskForm, DateField, IntegerField, DecimalField, validators
+from flask_wtf import FlaskForm, DateField, IntegerField, DecimalField, validators, StringField
 
 # Definindo a classe do formulário para cada caixa de entrada
 class FormularioCaixa(FlaskForm):
     data = DateField('Data', format='%Y-%m-%d')
-    caixa1 = IntegerField('Caixa 1', [validators.DataRequired()])
+    caixa1 = IntegerField('Caixa1', [validators.DataRequired()])
     caixa2 = IntegerField('Caixa 2')
     caixa3 = IntegerField('Caixa 3')
     caixa4 = IntegerField('Caixa 4')
