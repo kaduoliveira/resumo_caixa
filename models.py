@@ -64,7 +64,7 @@ class Caixas(db.Model):
     def __repr__(self):
         return f'id: {self.id} - Caixa nº.: {self.caixa1} - Data: {self.data} - Total Vendas: {self.total_total} - Serviços: {self.servicos_total}'
     
-class Usuario(db.Model):
+class Usuarios(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     usuario = db.Column(db.String(40), nullable=False)
     senha = db.Column(db.String(100), nullable=False)
