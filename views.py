@@ -7,7 +7,7 @@ from datetime import datetime
 @app.route('/')
 def index():
     # Efetuando uma query direto no banco que vai recber uma lista ordenada pelo id
-    lista = Caixas.query.order_by(Caixas.id)
+    lista = Caixas.query.order_by(Caixas.data).all()
     print('Listando Caixas presentes no banco de dados') 
     return render_template('lista.html', caixas=lista)
 
@@ -143,6 +143,17 @@ def criar():
     flash('Caixa registrado com sucesso!')
     return redirect(url_for('index'))
 
+# Rota para editar os valores de um caixa já criado
+@app.route('/editar/<int:id>')
+def editar(id):
+
+    # Verificando se o usuario está logando antes de continuar
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        print('Redirecionado pro login.')
+        return redirect(url_for('login', proxima=url_for('editar')))
+    caixa = Caixas.query.filter_by(id=id).first()
+    return render_template('editar.html', caixa=caixa)
+
 # Rota para a página de login
 @app.route('/login')
 def login():
@@ -210,10 +221,10 @@ def logout():
     return redirect(url_for('index'))
     '''
 
-@app.route('/editar/<int:id>')
+'''@app.route('/editar/<int:id>')
 def editar(id):
     pass
-    '''# Verificando se o usuario está logando antes de continuar
+    # Verificando se o usuario está logando antes de continuar
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         print('Redirecionado pro login.')
         return redirect(url_for('login', proxima=url_for('editar')))
@@ -224,3 +235,85 @@ def editar(id):
 if __name__ == '__main__':
     app.run(debug=True, host='192.168.15.110')
 '''
+
+@app.route('/atualizar', methods=['POST',])
+def atualizar():
+    caixa = Caixas.query.filter_by(id=request.form['id']).first()
+    
+    caixa.caixa1 = request.form['caixa1']
+    caixa.caixa2 = request.form['caixa2']
+    caixa.caixa3 = request.form['caixa3']
+    caixa.caixa4 = request.form['caixa4']
+
+    caixa.dinheiro1 = request.form['dinheiro1']
+    caixa.dinheiro2 = request.form['dinheiro2']
+    caixa.dinheiro3 = request.form['dinheiro3']
+    caixa.dinheiro4 = request.form['dinheiro4']
+    caixa.dinheiro_total = request.form['dinheiro_total']
+
+    caixa.cartao_cred1 = request.form['cartao_cred1']
+    caixa.cartao_cred2 = request.form['cartao_cred2']
+    caixa.cartao_cred3 = request.form['cartao_cred3']
+    caixa.cartao_cred4 = request.form['cartao_cred4']
+    caixa.cartao_cred_total = request.form['cartao_cred_total']
+
+    caixa.cartao_deb1 = request.form['cartao_deb1']
+    caixa.cartao_deb2 = request.form['cartao_deb2']
+    caixa.cartao_deb3 = request.form['cartao_deb3']
+    caixa.cartao_deb4 = request.form['cartao_deb4']
+    caixa.cartao_deb_total = request.form['cartao_deb_total']
+
+    caixa.pix1 = request.form['pix1']
+    caixa.pix2 = request.form['pix2']
+    caixa.pix3 = request.form['pix3']
+    caixa.pix4 = request.form['pix4']
+    caixa.pix_total = request.form['pix_total']
+
+    caixa.cheque1 = request.form['cheque1']
+    caixa.cheque2 = request.form['cheque2']
+    caixa.cheque3 = request.form['cheque3']
+    caixa.cheque4 = request.form['cheque4']
+    caixa.cheque_total = request.form['cheque_total']
+
+    caixa.total1 = request.form['total1']
+    caixa.total2 = request.form['total2']
+    caixa.total3 = request.form['total3']
+    caixa.total4 = request.form['total4']
+    caixa.total_total = request.form['total_total']
+
+    caixa.malote1 = request.form['malote1']
+    caixa.malote2 = request.form['malote2']
+    caixa.malote3 = request.form['malote3']
+    caixa.malote4 = request.form['malote4']
+    caixa.malote_total = request.form['malote_total']
+    
+    caixa.sangria1 = request.form['sangria1']
+    caixa.sangria2 = request.form['sangria2']
+    caixa.sangria3 = request.form['sangria3']
+    caixa.sangria4 = request.form['sangria4']
+    caixa.sangria_total = request.form['sangria_total']
+
+    caixa.qtd_vendas = request.form['qtd_vendas']
+    caixa.tkt_medio = request.form['tkt_medio']
+
+    caixa.servicos1 = request.form['servicos1']
+    caixa.servicos2 = request.form['servicos2']
+    caixa.servicos3 = request.form['servicos3']
+    caixa.servicos4 = request.form['servicos4']
+    caixa.servicos_total = request.form['servicos_total']
+
+    db.session.add(caixa)
+    db.session.commit()
+    
+    flash('Caixa atualizado com sucesso.')
+    return redirect(url_for('index'))
+
+@app.route('/deletar/<int:id>')
+def deletar(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        print('Redirecionando para login antes de acessar o sistema.')
+        return redirect(url_for('login'))
+    jogo = Caixas.query.filter_by(id=id).delete()
+    db.session.commit()
+    flash('Caixa deletado com sucesso.')
+    return redirect(url_for('index'))

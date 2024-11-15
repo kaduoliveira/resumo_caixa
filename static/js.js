@@ -214,5 +214,14 @@ function calcular() {
     atualizarTotal3();
     atualizarTotal4();
     atualizarTotalTotal();
+    atualizarTotalDinheiro();
+    atualizarTotalCartaoCred();
+    atualizarTotalCartaoDeb();
+    atualizarTotalPix();
+    atualizarTotalCheque();
+    atualizarTotalMalotes();
+    atualizarTotalSangria();
+    atualizarTotalServicos();
+    calcularResultadoTotal();
     
 }
