@@ -71,9 +71,15 @@
 
     {% for message in get_flashed_messages() %}
         <div class="alert alert-info">{{ message }}</div>
-    {% endfor %}    
-    <a href="{{ url_for('login') }}" class="topo"><button>Login</button></a>
-    <a href="{{ url_for('logout') }}" class="topo"><button class="logout">Logout</button></a>
+    {% endfor %}
+
+    {% if session.usuario_logado %} 
+        <a href="{{ url_for('logout') }}" class="topo"><button class="logout">Logout</button></a>
+        <h6>Usuário logado: {{ session.usuario_logado }} </h6>
+    {% else %} 
+        <a href="{{ url_for('login') }}" class="topo"><button>Login</button></a> 
+    {% endif %}
+
     <div class="floating-form">
         
         <h4>Listagem de Fechamentos de Caixa</h4> 
@@ -107,5 +113,6 @@
                 {% endfor %}
             </tbody>
         </table>
+        <h4>Soma Total das Vendas: R$ {{ soma_total_vendas }}</h4>
     </div>
 

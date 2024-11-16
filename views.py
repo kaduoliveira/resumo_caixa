@@ -8,8 +8,10 @@ from datetime import datetime
 def index():
     # Efetuando uma query direto no banco que vai recber uma lista ordenada pelo id
     lista = Caixas.query.order_by(Caixas.data).all()
+    print(lista)
+    soma_total_vendas = sum(lista.total_total for lista in lista)
     print('Listando Caixas presentes no banco de dados') 
-    return render_template('lista.html', caixas=lista)
+    return render_template('lista.html', caixas=lista, soma_total_vendas=soma_total_vendas)
 
 # Rota que leva à página de criação de um novo caixa
 @app.route('/novo')
@@ -146,11 +148,12 @@ def criar():
 # Rota para editar os valores de um caixa já criado
 @app.route('/editar/<int:id>')
 def editar(id):
-
+ 
     # Verificando se o usuario está logando antes de continuar
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+    if 'usuario_logado' not in session or session['usuario_logado'] is None:
         print('Redirecionado pro login.')
-        return redirect(url_for('login', proxima=url_for('editar')))
+        return redirect(url_for('login', proxima=url_for('editar', id=id)))
+    
     caixa = Caixas.query.filter_by(id=id).first()
     return render_template('editar.html', caixa=caixa)
 
