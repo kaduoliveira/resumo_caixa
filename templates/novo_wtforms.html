@@ -41,11 +41,11 @@
                 </tr>
                 <tr>
                     <td><label for="cartao_cred1">CARTÃO CRED</label></td>
-                    <td><input tabindex="4" type="number" step="0.01" min="0" class="" placeholder="0.00" id="cartao_cred1" name="cartao_cred1" oninput="atualizarTotal1(); atualizarTotalCartaoCred()"></td>
-                    <td><input tabindex="12" type="number" step="0.01" min="0" class="" placeholder="0.00" id="cartao_cred2" name="cartao_cred2" oninput="atualizarTotal2(); atualizarTotalCartaoCred()"></td>
-                    <td><input tabindex="20" type="number" step="0.01" min="0" class="" placeholder="0.00" id="cartao_cred3" name="cartao_cred3" oninput="atualizarTotal3(); atualizarTotalCartaoCred()"></td>
-                    <td><input tabindex="28" type="number" step="0.01" min="0" class="" placeholder="0.00"id="cartao_cred4" name="cartao_cred4" oninput="atualizarTotal4(); atualizarTotalCartaoCred()"></td>
-                    <td><input type="number" step="0.01" min="0" class="" placeholder="0.00" id="cartao_cred_total" name="cartao_cred_total" readonly></td>
+                    <td>{{ form.cartao_cred1(tabindex="4", type="number", step="0.01", min="0", class="", placeholder="0.00", id="cartao_cred1", oninput="atualizarTotal1(); atualizarTotalCartaoCred()") }} </td>
+                    <td>{{ form.cartao_cred2(tabindex="12", type="number", step="0.01", min="0", class="", placeholder="0.00", id="cartao_cred2", oninput="atualizarTotal2(); atualizarTotalCartaoCred()") }} </td>
+                    <td>{{ form.cartao_cred3(tabindex="20", type="number", step="0.01", min="0", class="", placeholder="0.00", id="cartao_cred3", oninput="atualizarTotal3(); atualizarTotalCartaoCred()") }} </td>
+                    <td>{{ form.cartao_cred4(tabindex="28", type="number", step="0.01", min="0", class="", placeholder="0.00", id="cartao_cred4", oninput="atualizarTotal4(); atualizarTotalCartaoCred()") }} </td>
+                    <td>{{ form.cartao_cred_total(type="number", step="0.01", min="0", class="", placeholder="0.00", id="cartao_cred_total") }}</td>
                 </tr>                
                 <tr>
                     <td><label for="cartao_deb1">CARTÃO DEB</label></td>
