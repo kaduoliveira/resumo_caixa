@@ -192,7 +192,10 @@ function formatCurrency(input) {
     input.value = value;
 }
 
+/*
+// Removida pois o usuario final tem como costume o uso da tecla enter
 // Permite navegar entre os inputs usando a tecla enter
+
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form');
     const inputs = Array.from(form.querySelectorAll('input'));
@@ -207,6 +210,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+*/
+
+// Permite navegar entre os inputs usando tabindex como ordem de tabulação e o "enter" como gatilho
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form');
+    const inputs = Array.from(form.querySelectorAll('input')).sort((a, b) => {
+        return (a.getAttribute('tabindex') || 0) - (b.getAttribute('tabindex') || 0);
+    });
+
+    form.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            const index = inputs.indexOf(document.activeElement);
+            if (index !== -1 && index + 1 < inputs.length) {
+                inputs[index + 1].focus();
+            }
+        }
+    });
+});
+
 
 function calcular() {
     atualizarTotal1();

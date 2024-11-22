@@ -5,7 +5,7 @@
     <title>Novo Fechamento de Caixa</title>
     <meta name="viewport" content="width=device-width, initial-scale=2.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='bo otstrap.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='st yle.css') }}">
    
 </head>
 
@@ -19,25 +19,25 @@
         <h3>RESUMO DIÁRIO DO CAIXA</h3>
     <form method="post" action="/criar" >
         <fieldset>
+            <h1>NOVO2 WTFORMS</h1>
             <h4>RESUMO DE VENDAS</h4>
-            <input type="date" name="data" id="data" required tabindex="1">
+            {{ form.data(tabindex=1, class="form-horizontal")}}
             <table>
                 <tr class="caixa">
                     <td><label for="caixa1">Caixa nº.</label></td>
-                    <td><input tabindex="2" type="number" id="caixa1" name="caixa1" required></td>
-                    <td><input tabindex="10" type="number" id="caixa2" name="caixa2"></td>
-                    <td><input tabindex="18" type="number" id="caixa3" name="caixa3"></td>
-                    <td><input tabindex="26" type="number" id="caixa4" name="caixa4"></td>
+                    <td>{{ form.caixa1() }}</td>
+                    <td>{{ form.caixa2() }}</td>
+                    <td>{{ form.caixa3() }}</td>
+                    <td>{{ form.caixa4() }}</td>
                     <td style="text-align: center;">TOTAL</td>
                 </tr>
                 <tr>
                     <td><label for="dinheiro1">Dinheiro</label></td>
-                    <td><input tabindex="3" type="number" step="0.01" min="0" class="coluna1" placeholder="0.00" id="dinheiro1" name="dinheiro1" oninput="atualizarTotal1(); atualizarTotalDinheiro(); calcularResultado1()"></td>
-                    <td><input tabindex="11" type="number" step="0.01" min="0" class="coluna2" placeholder="0.00" id="dinheiro2" name="dinheiro2" oninput="atualizarTotal2(); atualizarTotalDinheiro(); calcularResultado2() "></td>
-                    <td><input tabindex="19" type="number" step="0.01" min="0" class="coluna3" placeholder="0.00" id="dinheiro3" name="dinheiro3" oninput="atualizarTotal3(); atualizarTotalDinheiro(); calcularResultado4()"></td>
-                    <td><input tabindex="27" type="number" step="0.01" min="0" class="coluna4" placeholder="0.00" id="dinheiro4" name="dinheiro4" oninput="atualizarTotal4(); atualizarTotalDinheiro(); calcularResultado4()"></td>
-                    <td><input type="number" step="0.01" min="0" class="coluna5" placeholder="0.00" id="dinheiro_total" name="dinheiro_total" readonly></td>
-                    
+                    <td>{{ form.dinheiro1(tabindex="3", step="0.01", min="0", class="coluna1", placeholder="0.00", id="dinheiro1", oninput="atualizarTotal1(); atualizarTotalDinheiro(); calcularResultado1()") }}</td>
+                    <td>{{ form.dinheiro2(tabindex="11", type="number", step="0.01", min="0", class="coluna2", placeholder="0.00", id="dinheiro2", oninput="atualizarTotal2(); atualizarTotalDinheiro(); calcularResultado2()") }}</td>
+                    <td>{{ form.dinheiro3(tabindex="19", type="number", step="0.01", min="0", class="coluna3", placeholder="0.00", id="dinheiro3", oninput="atualizarTotal3(); atualizarTotalDinheiro(); calcularResultado3()") }}</td>
+                    <td>{{ form.dinheiro4(tabindex="27", type="number", step="0.01", min="0", class="coluna4", placeholder="0.00", id="dinheiro4", oninput="atualizarTotal4(); atualizarTotalDinheiro(); calcularResultado4()") }}</td>
+                    <td>{{ form.dinheiro_total(type="number", step="0.01", min="0", class="coluna5", placeholder="0.00", id="dinheiro_total") }}</td>
                 </tr>
                 <tr>
                     <td><label for="cartao_cred1">CARTÃO CRED</label></td>
@@ -129,8 +129,8 @@
             <div style="text-align: right;">                
                 <a href="{{ url_for('index') }}"><button class="voltar" type="button">Voltar</button></a>
                 <button type="button" onclick="calcular(); calcularResultadoTotal(); atualizarTotalTotal()">Calcular</button>
-                <button class="salvar" type="submit">Salvar</button>
+                <button class="salvar" type="submit" onclick="calcular(); calcularResultadoTotal(); atualizarTotalTotal()">Salvar</button>
             </div>
         </fieldset>
     </form>
-</di
+</div>

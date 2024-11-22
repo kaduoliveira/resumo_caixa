@@ -2,6 +2,7 @@ from flask import render_template, url_for, redirect, request, flash, session
 from app import app, db
 from models import Caixas, Usuarios
 from datetime import datetime
+from helpers import FormularioCaixa
 
 # Rota principal
 @app.route('/')
@@ -16,13 +17,23 @@ def index():
 # Rota que leva à página de criação de um novo caixa
 @app.route('/novo')
 def novo():
-
+    
     # Verificando se o usuario está logando antes de continuar
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         print('Redirecionado pro login.')
         return redirect(url_for('login', proxima=url_for('novo')))
+    form = FormularioCaixa()
+    return render_template('novo.html', form=form)
 
-    return render_template('novo.html')
+@app.route('/novo2')
+def novo2():
+    
+    # Verificando se o usuario está logando antes de continuar
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        print('Redirecionado pro login.')
+        return redirect(url_for('login', proxima=url_for('novo2')))
+    form = FormularioCaixa()
+    return render_template('novo_wtforms.html', form=form)
 
 # Rota para criar um novo caixa
 @app.route('/criar', methods=['POST',])
