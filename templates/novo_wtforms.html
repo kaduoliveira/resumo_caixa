@@ -9,7 +9,7 @@
    
 </head>
 
-<body style="background-color: #0a1434; font-family: 'Verdana', sans-serif; color: white;">
+<body>
     {% for message in get_flashed_messages() %}
         <div class="alert alert-success">{{ message }}</div>
     {% endfor %}
@@ -68,62 +68,61 @@
                     <td>{{ form.cheque1(tabindex="7", step="0.01", min="0", class="form-control", placeholder="0.00", id="cheque1", oninput="atualizarTotal1(); atualizarTotalCheque()") }}</td>
                     <td>{{ form.cheque2(tabindex="15", step="0.01", min="0", class="form-control", placeholder="0.00", id="cheque2", oninput="atualizarTotal2(); atualizarTotalCheque()") }}</td>
                     <td>{{ form.cheque3(tabindex="23", step="0.01", min="0", class="form-control", placeholder="0.00", id="cheque3", oninput="atualizarTotal3(); atualizarTotalCheque()") }}</td>
-                    <td><input tabindex="31" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cheque4" id="cheque4" oninput="atualizarTotal4(); atualizarTotalCheque()"></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cheque_total" id="cheque_total" readonly></td>
+                    <td>{{ form.cheque4(tabindex="31", step="0.01", min="0", class="form-control", placeholder="0.00",  id="cheque4", oninput="atualizarTotal4(); atualizarTotalCheque()") }}</td>
+                    <td>{{ form.cheque_total(step="0.01", min="0", class="form-control", placeholder="0.00", id="cheque_total") }}</td>
                 </tr>
                 <tr class="destaque">
                     <td><label class="destaque" for="total1">TOTAL</label></td>
-                    <td><input class="destaque" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="total1" id="total1" oninput="atualizarTotalTotal()" readonly></td>
-                    <td><input class="destaque" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="total2" id="total2" oninput="atualizarTotalTotal()" readonly></td>
-                    <td><input class="destaque" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="total3" id="total3" oninput="atualizarTotalTotal()" readonly></td>
-                    <td><input class="destaque" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="total4" id="total4" oninput="atualizarTotalTotal()" readonly></td>
-                    <td><input class="destaque" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="total_total" id="total_total" readonly required></td>
+                    <td>{{ form.total1(step="0.01", min="0", class="form-control", placeholder="0.00", id="total1", oninput="atualizarTotalTotal()") }}</td>
+                    <td>{{ form.total2(step="0.01", min="0", class="form-control", placeholder="0.00", id="total2", oninput="atualizarTotalTotal()") }}</td>
+                    <td>{{ form.total3(step="0.01", min="0", class="form-control", placeholder="0.00", id="total3", oninput="atualizarTotalTotal()") }}</td>
+                    <td>{{ form.total4(step="0.01", min="0", class="form-control", placeholder="0.00", id="total4", oninput="atualizarTotalTotal()") }}</td>
+                    <td>{{ form.total_total(step="0.01", min="0", class="form-control", placeholder="0.00", id="total_total") }}</td>
                 </tr>
             </table>
             <hr>
             <table>
                 <tr>
                     <td><label for="malote1">Dinheiro Malote</label></td>
-                    <td><input tabindex="8" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="malote1" id="malote1" oninput="atualizarTotalMalotes(); calcularResultado1()"></td>
-                    <td><input tabindex="16" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="malote2" id="malote2" oninput="atualizarTotalMalotes(); calcularResultado2() "></td>
-                    <td><input tabindex="24" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="malote3" id="malote3" oninput="atualizarTotalMalotes(); calcularResultado3()"></td>
-                    <td><input tabindex="32" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="malote4" id="malote4" oninput="atualizarTotalMalotes(); calcularResultado4()"></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="malote_total" id="malote_total" readonly></td>                 
+                    <td>{{ form.malote1(tabindex="8", step="0.01", min="0", class="form-control", placeholder="0.00", id="malote1", oninput="atualizarTotalMalotes(); calcularResultado1()") }}</td>
+                    <td>{{ form.malote2(tabindex="16", step="0.01", min="0", class="form-control", placeholder="0.00", id="malote2", oninput="atualizarTotalMalotes(); calcularResultado2()") }}</td>
+                    <td>{{ form.malote3(tabindex="24", step="0.01", min="0", class="form-control", placeholder="0.00", id="malote3", oninput="atualizarTotalMalotes(); calcularResultado3()") }}</td>
+                    <td>{{ form.malote4(tabindex="32", step="0.01", min="0", class="form-control", placeholder="0.00", id="malote4", oninput="atualizarTotalMalotes(); calcularResultado4()") }}</td>
+                    <td>{{ form.malote_total(step="0.01", min="0", class="form-control", placeholder="0.00", id="malote_total") }}</td>                 
                 </tr>
                 <tr class="sangria">
                     <td><label for="sangria1">Sangria</label></td>
-                    <td><input tabindex="9" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="sangria1" id="sangria1" oninput="atualizarTotalSangria(); calcularResultado1()"></td>
-                    <td><input tabindex="17" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="sangria2" id="sangria2" oninput="atualizarTotalSangria(); calcularResultado2() "></td>
-                    <td><input tabindex="25" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="sangria3" id="sangria3" oninput="atualizarTotalSangria(); calcularResultado3()"></td>
-                    <td><input tabindex="33" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="sangria4" id="sangria4" oninput="atualizarTotalSangria(); calcularResultado4()"></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="sangria_total" id="sangria_total"></td>
+                    <td>{{ form.sangria1(tabindex="9", step="0.01", min="0", class="form-control", placeholder="0.00", id="sangria1", oninput="atualizarTotalSangria(); calcularResultado1()") }}</td>
+                    <td>{{ form.sangria2(tabindex="17", step="0.01", min="0", class="form-control", placeholder="0.00", id="sangria2", oninput="atualizarTotalSangria(); calcularResultado2()") }}</td>
+                    <td>{{ form.sangria3(tabindex="25", step="0.01", min="0", class="form-control", placeholder="0.00", id="sangria3", oninput="atualizarTotalSangria(); calcularResultado3()") }}</td>
+                    <td>{{ form.sangria4(tabindex="33", step="0.01", min="0", class="form-control", placeholder="0.00", id="sangria4", oninput="atualizarTotalSangria(); calcularResultado4()") }}</td>
+                    <td>{{ form.sangria_total(step="0.01", min="0", class="form-control", placeholder="0.00", id="sangria_total") }}</td>
                 </tr>
                 <tr class="destaque">
                     <td><label class="destaque" for="resultado1">Resultado</label></td>
-                    <td><input class="destaque" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado1" id="resultado1" readonly></td>
-                    <td><input class="destaque" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado2" id="resultado2" readonly></td>
-                    <td><input class="destaque" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado3" id="resultado3" readonly></td>
-                    <td><input class="destaque" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado4" id="resultado4" readonly></td>
-                    <td><input class="destaque" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="resultado_total" id="resultado_total" readonly required></td>
+                    <td>{{ form.resultado1(step="0.01", min="0", class="form-control", placeholder="0.00", id="resultado1") }}</td>
+                    <td>{{ form.resultado2(step="0.01", min="0", class="form-control", placeholder="0.00", id="resultado2") }}</td>
+                    <td>{{ form.resultado3(step="0.01", min="0", class="form-control", placeholder="0.00", id="resultado3") }}</td>
+                    <td>{{ form.resultado4(step="0.01", min="0", class="form-control", placeholder="0.00", id="resultado4") }}</td>
+                    <td>{{ form.resultado_total(step="0.01", min="0", class="form-control", placeholder="0.00", id="resultado_total") }}</td>
                 </tr>
             </table>         
             <hr>
             <table>
                 <td><label for="qtd_vendas">Quant. de Vendas</label></td>
-                <td><input tabindex="39" type="number" name="qtd_vendas" id="qtd_vendas" required oninput="atualizarTicketMedio()"></td>
-            
+                <td>{{ form.qtd_vendas(tabindex="39", id="qtd_vendas", oninput="atualizarTicketMedio()") }}</td>
                 <td><label for="tkt_medio">Ticket Médio</label></td>
-                <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="tkt_medio" id="tkt_medio" readonly></td>
+                <td>{{ form.tkt_medio(step="0.01", min="0", class="form-control", placeholder="0.00", id="tkt_medio") }} </td>
             </table>
             <hr>
             <table>
                 <tr>
                     <td><label for="servicos1">Serviços</label></td>
-                    <td><input tabindex="35" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="servicos1" id="servicos1" oninput="atualizarTotalServicos()"></td>
-                    <td><input tabindex="36" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="servicos2" id="servicos2" oninput="atualizarTotalServicos()"></td>
-                    <td><input tabindex="37" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="servicos3" id="servicos3" oninput="atualizarTotalServicos()"></td>
-                    <td><input tabindex="38" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="servicos4" id="servicos4" oninput="atualizarTotalServicos()"></td>
-                    <td class="destaque"><input type="number" step="0.01" min="0" class="form-control destaque" placeholder="0.00" name="servicos_total" id="servicos_total"></td>
+                    <td>{{ form.servicos1(tabindex="35", step="0.01", min="0", class="form-control", placeholder="0.00", id="servicos1", oninput="atualizarTotalServicos()") }}</td>
+                    <td>{{ form.servicos2(tabindex="36", step="0.01", min="0", class="form-control", placeholder="0.00", id="servicos2", oninput="atualizarTotalServicos()") }}</td>
+                    <td>{{ form.servicos3(tabindex="37", step="0.01", min="0", class="form-control", placeholder="0.00", id="servicos3", oninput="atualizarTotalServicos()") }}</td>
+                    <td>{{ form.servicos4(tabindex="38", step="0.01", min="0", class="form-control", placeholder="0.00", id="servicos4", oninput="atualizarTotalServicos()") }}</td>
+                    <td class="destaque">{{ form.servicos_total(step="0.01", min="0", class="form-control destaque", placeholder="0.00", id="servicos_total") }}</td>
                 </tr>   
             </table>   
             <div style="text-align: right;">                
