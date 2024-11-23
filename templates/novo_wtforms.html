@@ -9,7 +9,7 @@
    
 </head>
 
-<body>
+<body style="background-color: #0a1434; font-family: 'Verdana', sans-serif; color: white;">
     {% for message in get_flashed_messages() %}
         <div class="alert alert-success">{{ message }}</div>
     {% endfor %}
@@ -49,25 +49,25 @@
                 </tr>                
                 <tr>
                     <td><label for="cartao_deb1">CARTÃO DEB</label></td>
-                    <td><input tabindex="5" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cartao_deb1" id="cartao_deb1" oninput="atualizarTotal1(); atualizarTotalCartaoDeb()"></td>
-                    <td><input tabindex="13" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cartao_deb2" id="cartao_deb2" oninput="atualizarTotal2();  atualizarTotalCartaoDeb()"></td>
-                    <td><input tabindex="21" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cartao_deb3" id="cartao_deb3" oninput="atualizarTotal3();  atualizarTotalCartaoDeb()"></td>
-                    <td><input tabindex="29" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cartao_deb4" id="cartao_deb4" oninput="atualizarTotal4();  atualizarTotalCartaoDeb()"></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cartao_deb_total" id="cartao_deb_total" readonly></td>
+                    <td>{{ form.cartao_deb1(tabindex="5", type="number", step="0.01", min="0", class="form-control",placeholder="0.00", id="cartao_deb1", oninput="atualizarTotal1(); atualizarTotalCartaoDeb()") }}</td>
+                    <td>{{ form.cartao_deb2(tabindex="13", type="number", step="0.01", min="0", class="form-control", placeholder="0.00", id="cartao_deb2", oninput="atualizarTotal2();  atualizarTotalCartaoDeb()") }}</td>
+                    <td>{{ form.cartao_deb3(tabindex="21", type="number", step="0.01", min="0", class="form-control", placeholder="0.00", id="cartao_deb3", oninput="atualizarTotal3();  atualizarTotalCartaoDeb()") }}</td>
+                    <td>{{ form.cartao_deb4(tabindex="29", type="number", step="0.01", min="0", class="form-control", placeholder="0.00", id="cartao_deb4", oninput="atualizarTotal4();  atualizarTotalCartaoDeb()") }}</td>
+                    <td>{{ form.cartao_deb_total(type="number", step="0.01", min="0", class="form-control", placeholder="0.00", id="cartao_deb_total") }}</td>
                 </tr>
                 <tr>
                     <td><label for="pix1">PIX</label></td>
-                    <td><input tabindex="6" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="pix1" id="pix1" oninput="atualizarTotal1(); atualizarTotalPix()"></td>
-                    <td><input tabindex="14" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="pix2" id="pix2" oninput="atualizarTotal2(); atualizarTotalPix()"></td>
-                    <td><input tabindex="22" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="pix3" id="pix3" oninput="atualizarTotal3(); atualizarTotalPix()"></td>
-                    <td><input tabindex="30" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="pix4" id="pix4" oninput="atualizarTotal4(); atualizarTotalPix()"></td>
-                    <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="pix_total" id="pix_total" readonly></td>
+                    <td>{{ form.pix1(tabindex="6", type="number", step="0.01", min="0", class="form-control", placeholder="0.00", id="pix1", oninput="atualizarTotal1(); atualizarTotalPix()") }}</td>
+                    <td>{{ form.pix2(tabindex="14", type="number", step="0.01", min="0", class="form-control", placeholder="0.00", id="pix2", oninput="atualizarTotal2(); atualizarTotalPix()") }}</td>
+                    <td>{{ form.pix3(tabindex="22", type="number", step="0.01", min="0", class="form-control", placeholder="0.00", id="pix3", oninput="atualizarTotal3(); atualizarTotalPix()") }}</td>
+                    <td>{{ form.pix4(tabindex="30", step="0.01", min="0", class="form-control", placeholder="0.00", id="pix4", oninput="atualizarTotal4(); atualizarTotalPix()") }}</td>
+                    <td>{{ form.pix_total(type="number", step="0.01", min="0", class="form-control", placeholder="0.00", id="pix_total") }}</td>
                 </tr>
                 <tr>
                     <td><label for="cheque1">CHEQUE</label></td>
-                    <td><input tabindex="7" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cheque1" id="cheque1" oninput="atualizarTotal1(); atualizarTotalCheque()"></td>
-                    <td><input tabindex="15" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cheque2" id="cheque2" oninput="atualizarTotal2(); atualizarTotalCheque()"></td>
-                    <td><input tabindex="23" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cheque3" id="cheque3" oninput="atualizarTotal3(); atualizarTotalCheque()"></td>
+                    <td>{{ form.cheque1(tabindex="7", step="0.01", min="0", class="form-control", placeholder="0.00", id="cheque1", oninput="atualizarTotal1(); atualizarTotalCheque()") }}</td>
+                    <td>{{ form.cheque2(tabindex="15", step="0.01", min="0", class="form-control", placeholder="0.00", id="cheque2", oninput="atualizarTotal2(); atualizarTotalCheque()") }}</td>
+                    <td>{{ form.cheque3(tabindex="23", step="0.01", min="0", class="form-control", placeholder="0.00", id="cheque3", oninput="atualizarTotal3(); atualizarTotalCheque()") }}</td>
                     <td><input tabindex="31" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cheque4" id="cheque4" oninput="atualizarTotal4(); atualizarTotalCheque()"></td>
                     <td><input type="number" step="0.01" min="0" class="form-control" placeholder="0.00" name="cheque_total" id="cheque_total" readonly></td>
                 </tr>
