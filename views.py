@@ -2,7 +2,8 @@ from flask import render_template, url_for, redirect, request, flash, session
 from app import app, db
 from models import Caixas, Usuarios
 from datetime import datetime
-from helpers import FormularioCaixa
+from helpers import FormularioCaixa, FormularioLogin
+
 
 # Rota principal
 @app.route('/')
@@ -39,9 +40,14 @@ def novo2():
 @app.route('/criar', methods=['POST',])
 def criar():
    
+    form = FormularioCaixa(request.form)
+
+    if not form.validate_on_submit():
+        return redirect(url_for(novo))
+
     # Requisitando os valores do formulário usando o método POST e o método request do Flask 'puro'
     
-    data = request.form['data']
+    data = form.data.data
     print(data)
     print(type(data))
     data_comparada = Caixas.query.filter_by(data=data).first()
@@ -55,10 +61,10 @@ def criar():
         flash('Já existe um caixa salvo para essa data.')
         return redirect(url_for('index'))
 
-    caixa1 = int(request.form['caixa1']) if request.form['caixa1'] != '' else 0
-    caixa2 = int(request.form['caixa2']) if request.form['caixa2'] != '' else 0 
-    caixa3 = int(request.form['caixa3']) if request.form['caixa3'] != '' else 0
-    caixa4 = int(request.form['caixa4']) if request.form['caixa4'] != '' else 0
+    caixa1 = form.caixa1.data if form.caixa1.data != '' else 0
+    caixa2 = form.caixa2.data if form.caixa2.data != '' else 0
+    caixa3 = form.caixa3.data if form.caixa3.data != '' else 0
+    caixa4 = form.caixa4.data if form.caixa4.data != '' else 0
     print('Caixa  1: {caixa1}, 2: {caixa2}, 3: {caixa3}, 4: {caixa4}'.format(caixa1=caixa1, caixa2=caixa2, caixa3=caixa3, caixa4=caixa4))
 
     dinheiro1 = float(request.form['dinheiro1']) if request.form['dinheiro1'] != '' else 0
@@ -171,8 +177,9 @@ def editar(id):
 # Rota para a página de login
 @app.route('/login')
 def login():
-    proxima = request.args.get('proxima') 
-    return render_template('login.html', proxima=proxima)
+    proxima = request.args.get('proxima')
+    form = FormularioLogin()
+    return render_template('login.html', proxima=proxima, form=form)
     '''proxima = request.args.get('proxima')
     if session['usuario_logado'] is not None:
         flash('Usuario -- {usuario_logado} -- já está logado'.format(usuario_logado=session['usuario_logado']))
@@ -182,6 +189,7 @@ def login():
 # Rota para autenticar o login
 @app.route('/autenticar', methods=['POST', ])
 def autenticar():
+    
     usuario = request.form['usuario']
     senha = request.form['senha']
     proxima_pagina = request.form.get('proxima')

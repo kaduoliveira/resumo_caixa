@@ -110,13 +110,16 @@
             <h3>Login</h3> 
             <div>
                 <label for="usuario">Usuário</label>
-                <input type="text" name="usuario" placeholder="Insira o seu usuário">
+                <!-- <input type="text" name="usuario" placeholder="Insira o seu usuário"> -->
+                {{ form.usuario(placeholder="Insira o seu usuário") }}
             </div>
             <div>
                 <label for="senha">Senha</label>
-                <input type="password" name="senha" placeholder="Insira a sua senha">
+                <!-- <input type="password" name="senha" placeholder="Insira a sua senha"> -->
+                <div>{{ form.senha(placeholder="Insira a sua senha") }}</div>
             </div>
             <div>
-                <button type="submit">Enviar</button>                        
+                {{ form.login() }}
+                <!-- <button type="submit">Enviar</button> -->                        
         </form>
     </div>

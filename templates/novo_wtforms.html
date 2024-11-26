@@ -128,7 +128,8 @@
             <div style="text-align: right;">                
                 <a href="{{ url_for('index') }}"><button class="voltar" type="button">Voltar</button></a>
                 <button type="button" onclick="calcular(); calcularResultadoTotal(); atualizarTotalTotal()">Calcular</button>
-                <button class="salvar" type="submit" onclick="calcular(); calcularResultadoTotal(); atualizarTotalTotal()">Salvar</button>
+                {{ form.salvar(class="salvar", onclick="calcular(); calcularResultadoTotal(); atualizarTotalTotal()") }}
+                <!-- <button class="salvar" type="submit" onclick="calcular(); calcularResultadoTotal(); atualizarTotalTotal()">Salvar</button> -->
             </div>
         </fieldset>
     </form>

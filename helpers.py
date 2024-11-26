@@ -1,6 +1,6 @@
 from app import app
 from flask_wtf import FlaskForm
-from wtforms import DateField, IntegerField, DecimalField, validators, SubmitField
+from wtforms import DateField, IntegerField, DecimalField, validators, SubmitField, StringField, PasswordField
 
 
 # Definindo a classe do formulário para cada caixa de entrada
@@ -63,3 +63,8 @@ class FormularioCaixa(FlaskForm):
     servicos4 = DecimalField('Serviços 4', places=2)
     servicos_total = DecimalField('Serviços Total', places=2, render_kw={'readonly': True})
     salvar = SubmitField('Salvar')
+
+class FormularioLogin(FlaskForm):
+    usuario = StringField('Usuário', [validators.DataRequired(), validators.Length(min=3, max=40)])
+    senha = PasswordField('Senha', [validators.DataRequired(), validators.Length(min=3, max=100)])
+    login = SubmitField('Login')
