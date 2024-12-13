@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Usuário</title>
+</head>
+<body>
+    <h3>Cadastro de Usuário</h3>
+    <form action="{{ url_for('criar_usuario') }}" method="post">
+        <div>
+            {{ form.usuario.label() }}
+            {{ form.senha }}
+        </div>
+        <div>
+            {{ form.salvar }}
+            <a href="{{ url_for('index') }}"><button type="button" >Voltar</button></a>
+        </div>
+    </form>
+</body>
+</html>

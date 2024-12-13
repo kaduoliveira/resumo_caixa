@@ -68,3 +68,8 @@ class FormularioLogin(FlaskForm):
     usuario = StringField('Usuário', [validators.DataRequired(), validators.Length(min=3, max=40)])
     senha = PasswordField('Senha', [validators.DataRequired(), validators.Length(min=3, max=100)])
     login = SubmitField('Login')
+
+class FormularioUsuario(FlaskForm):
+    usuario = StringField('Usuario', [validators.DataRequired(), validators.Length(min=3, max=20)])
+    senha = PasswordField('Senha', [validators.DataRequired(), validators.Length(min=3, max=100)])
+    salvar = SubmitField('Salvar')

@@ -2,7 +2,7 @@ from flask import render_template, url_for, redirect, request, flash, session
 from app import app, db
 from models import Caixas, Usuarios
 from datetime import datetime
-from helpers import FormularioCaixa, FormularioLogin
+from helpers import FormularioCaixa, FormularioLogin, FormularioUsuario
 
 
 # Rota principal
@@ -332,3 +332,11 @@ def deletar(id):
     db.session.commit()
     flash('Caixa deletado com sucesso.')
     return redirect(url_for('index'))
+
+@app.route('criar_usuario')
+def criar_usuario():
+    form = FormularioUsuario()
+    
+    if usuario_logado != 'kadu':
+        flash('Você não tem permição para cadastrar novos usuários.')
+        return redirect(url_for('index'))
