@@ -333,10 +333,8 @@ def deletar(id):
     flash('Caixa deletado com sucesso.')
     return redirect(url_for('index'))
 
-@app.route('criar_usuario')
-def criar_usuario():
+@app.route('/novo_usuario')
+def novo_usuario():
     form = FormularioUsuario()
-    
-    if usuario_logado != 'kadu':
-        flash('Você não tem permição para cadastrar novos usuários.')
-        return redirect(url_for('index'))
+
+    return render_template('novo_usuario.html', form=form)

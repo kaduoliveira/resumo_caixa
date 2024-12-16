@@ -7,9 +7,13 @@
 </head>
 <body>
     <h3>Cadastro de Usuário</h3>
-    <form action="{{ url_for('criar_usuario') }}" method="post">
+    <form action="{{ url_for('novo_usuario') }}" method="post">
         <div>
             {{ form.usuario.label() }}
+            {{ form.usuario() }}
+        </div>
+        <div>
+            {{ form.senha.label()}}
             {{ form.senha }}
         </div>
         <div>
